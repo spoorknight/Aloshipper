@@ -1,0 +1,130 @@
+{
+  "project_info": {
+    "project_number": "790588632133",
+    "firebase_url": "https://alotoday-596c7-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "alotoday-596c7",
+    "storage_bucket": "alotoday-596c7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:790588632133:android:ab3dcd839e0b9ff830072c",
+        "android_client_info": {
+          "package_name": "com.aloit.shipper.app_shipper"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "790588632133-4hmu7kk0iif57oqm2u4u27rv62dsaeck.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.aloit.shipper.app_shipper",
+            "certificate_hash": "1ef90db3871e09c02fc4b380c1903dbb38875943"
+          }
+        },
+        {
+          "client_id": "790588632133-4ool0dgv7u99m7oua24b0h8amc6vr414.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.aloit.shipper.app_shipper",
+            "certificate_hash": "ca08f1d3c89b723f5c774f540e11f9c5e0415605"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAabKEjT63m3bnAHdyKxLvQZdj56MQW1P4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "790588632133-2uumpgcdj8j30sdd5hsl0qmgrintkll4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.pnpit.aloit2",
+                "app_store_id": "1596924428"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:790588632133:android:9abcf0bf03dece1430072c",
+        "android_client_info": {
+          "package_name": "com.booking.aloit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "790588632133-479uehrb01i8sgrvtutlvnpv249hl4fu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.booking.aloit",
+            "certificate_hash": "e044ff928c775d7005d6189296b2f166b98af385"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAabKEjT63m3bnAHdyKxLvQZdj56MQW1P4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "790588632133-2uumpgcdj8j30sdd5hsl0qmgrintkll4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.pnpit.aloit2",
+                "app_store_id": "1596924428"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:790588632133:android:df5c250377a6264530072c",
+        "android_client_info": {
+          "package_name": "com.pnp.aloit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "790588632133-8lgqb1f7v28g5g1uohbt68tb7mhl030u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pnp.aloit",
+            "certificate_hash": "88058d8dacf7de44aad2fa943a8f1a9179ecb673"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAabKEjT63m3bnAHdyKxLvQZdj56MQW1P4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "790588632133-2uumpgcdj8j30sdd5hsl0qmgrintkll4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.pnpit.aloit2",
+                "app_store_id": "1596924428"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
