@@ -28,7 +28,7 @@ class StepperItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipOval(
       child: Container(
-        color: disabledColor ?? Theme.of(context).colorScheme.secondaryVariant,
+        color: disabledColor ?? Theme.of(context).colorScheme.secondaryContainer,
         child: Stack(
           children: [
             FutureBuilder(

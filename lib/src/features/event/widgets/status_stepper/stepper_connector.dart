@@ -35,7 +35,7 @@ class StepperConnector extends StatelessWidget {
         children: [
           renderLine(
             color:
-                disabledColor ?? Theme.of(context).colorScheme.secondaryVariant,
+                disabledColor ?? Theme.of(context).colorScheme.secondaryContainer,
           ),
           FutureBuilder(
             future: Future.delayed(
