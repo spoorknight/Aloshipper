@@ -119,7 +119,9 @@ class ProfileViewModel extends BaseViewModel {
         appData.firebaseToken,
       );
       if (res.list != null) {
-        listService = res.list ?? [];
+        listService = (res.list ?? [])
+            .where((element) => (element.price ?? 0) > 0)
+            .toList();
       }
     } catch (e) {
       Logger.d('GET LIST SERVICE MODEL >>>', e);

@@ -33,7 +33,7 @@ class MissionWidget extends StatelessWidget {
                       ),
                       padding: EdgeInsets.symmetric(
                           vertical: 10.sp, horizontal: 10.sp),
-                      margin: EdgeInsets.symmetric(horizontal: 16.sp),
+                      margin: EdgeInsets.symmetric(horizontal: 16.sp).copyWith(bottom: 28.sp),
                       child: Row(
                         children: [
                           Expanded(
@@ -110,12 +110,9 @@ class MissionWidget extends StatelessWidget {
                 });
               }
             }
-            return const Empty(
-              text: 'Hiện tại chưa có nhiệm vụ nào',
-            );
+            return const SizedBox.shrink();
           },
         ),
-        BoxConst.s12,
       ],
     );
   }
