@@ -44,6 +44,8 @@ class ProfileScreen extends StatelessWidget {
                   labelPadding: EdgeInsets.zero,
                   tabs: [
                     const Tab(child: Text('Thông tin')),
+
+                    if (canPayment.data == true)
                     const Tab(child: Text('Gói dịch vụ')),
                     // const Tab(child: Text('Hợp tác')),
                     if (canPayment.data == true)
@@ -54,6 +56,8 @@ class ProfileScreen extends StatelessWidget {
               body: TabBarView(
                 children: [
                   const PersonalInfo(),
+
+                  if (canPayment.data == true)
                   MultiProvider(
                     providers: [
                       ChangeNotifierProvider.value(

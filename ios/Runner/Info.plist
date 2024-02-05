@@ -22,8 +22,7 @@
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
-	<key>NSUserTrackingUsageDescription</key>
-    <string>This identifier will be used to deliver personalized ads to you.</string>
+
     <key>GADApplicationIdentifier</key>
     <string>ca-app-pub-8286460050735630~8698531916</string>
     <key>SKAdNetworkItems</key>
