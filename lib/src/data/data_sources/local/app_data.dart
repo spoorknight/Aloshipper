@@ -178,7 +178,7 @@ class AppData {
       builder: (builder) {
         return const DialogConfirm(
           mess: 'Cho phép ứng dụng truy cập vị trí của bạn để cập nhật toạ độ',
-          titleButton: 'Cho phép',
+          titleButton: 'Tiếp tục',
           action: openAppSettings,
         );
       },
