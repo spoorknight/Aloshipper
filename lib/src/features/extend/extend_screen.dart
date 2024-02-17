@@ -37,6 +37,13 @@ class ExtendScreen extends StatelessWidget {
     return MyScaffold(
       bgColor: Palette.newLightGrey,
       padding: EdgeInsets.zero,
+      appBar: MyAppBar(
+        backgroundColor: Palette.white,
+        leading: InkWell(
+          child: const Icon(Icons.arrow_back_ios, color: Palette.black),
+          onTap: () => AppNavigator.pop(),
+        ),
+      ),
       body: Column(
         children: [
           const InfoExtendWidget(),
