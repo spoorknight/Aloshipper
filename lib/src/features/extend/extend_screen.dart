@@ -1,3 +1,4 @@
+import 'package:app_shipper/src/shared/dialog.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';

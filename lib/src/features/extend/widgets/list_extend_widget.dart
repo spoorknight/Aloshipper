@@ -20,7 +20,19 @@ class ListExtendWidget extends StatelessWidget {
             price: item.getPrice,
             isSelected: viewModel.selectedPlanId == item.id,
             onTapBuy: () {
-              viewModel.thanhToanGoiDichVu(item.id);
+              showDialog(
+                  context: context,
+                  builder: (builder) {
+                    return DialogConfirm(
+                      mess: 'Bạn có muốn mua sử dụng gói này không?',
+                      action: (){
+                        viewModel.thanhToanGoiDichVu(item.id);
+                        AppNavigator.pop();
+                      },
+                      titleButton: "Chắc chắn",
+                      cancelButton: "Huỷ",
+                    );
+                  });
             },
           );
         },
