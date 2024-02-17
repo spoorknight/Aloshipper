@@ -342,7 +342,7 @@ class AppNavigator {
                   value: profileViewModel..initGoiDichVu()),
               ChangeNotifierProvider.value(value: eventViewModel),
             ],
-            child: const ExtendScreen(),
+            child:  ExtendScreen(showAppBar: true),
           ),
         );
 

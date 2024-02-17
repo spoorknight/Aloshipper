@@ -65,7 +65,7 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       ChangeNotifierProvider.value(value: eventViewModel),
                     ],
-                    child: const ExtendScreen(),
+                    child:  ExtendScreen(showAppBar: false),
                   ),
                   // const CollaborateScreen(),
                   if (canPayment.data == true) const Payment(),

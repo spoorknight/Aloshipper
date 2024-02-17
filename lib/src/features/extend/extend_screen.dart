@@ -30,20 +30,22 @@ part 'widgets/list_extend_widget.dart';
 part 'widgets/mission_widget.dart';
 
 class ExtendScreen extends StatelessWidget {
-  const ExtendScreen({super.key});
+  bool showAppBar;
+  ExtendScreen({super.key,required this.showAppBar});
 
   @override
   Widget build(BuildContext context) {
     return MyScaffold(
       bgColor: Palette.newLightGrey,
       padding: EdgeInsets.zero,
-      appBar: MyAppBar(
+      appBar:showAppBar ? MyAppBar(
+        title: "Gói dịch vụ",
         backgroundColor: Palette.white,
         leading: InkWell(
           child: const Icon(Icons.arrow_back_ios, color: Palette.black),
           onTap: () => AppNavigator.pop(),
         ),
-      ),
+      ) : null,
       body: Column(
         children: [
           const InfoExtendWidget(),
