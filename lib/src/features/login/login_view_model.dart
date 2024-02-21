@@ -37,7 +37,7 @@ class LoginViewModel extends BaseViewModel {
         appData.userId = res.memberId ?? '';
         appData.isExpire = res.expire ?? false;
         appData.isBan = res.isAutoBanned ?? false;
-
+        await appData.checkCanPayment(res.plan?.userId ?? "");
         _setRememberMe();
 
         Logger.d('TOKEN LOGIN', appData.tokenLogin);

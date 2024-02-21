@@ -32,6 +32,8 @@ class ApiPath {
   static const String huyTaiKhoan = 'HuyTaiKhoan';
   static const String updateStatusOrderShipper = 'updateStatusOrderShipper';
   static const String getUserBanksInfo = 'user-bank/info';
+  static const String getRideHailingSetting = 'ride-hailing/get-shipper-ride-hailing-settings';
+  static const String updateRideHailingSetting = 'ride-hailing/insert-or-update-shipper-config';
   static const String getBanks = 'getBanks';
   static const String createOrUpdate = 'user-bank/create-or-update';
 
@@ -58,6 +60,8 @@ class ApiPath {
   //* Ẩn hiện thanh toán
   static const String checkCanPayment =
       'https://alotoday.vn/apiv3/aloshipperApp';
+  static const String getListUserCanNotViewPayment = 'https://alotoday.vn/apiv3/getUsersCannotViewPMPage';
+
 
   //* nô dung chia sẻ
   static const String getShareSettings =

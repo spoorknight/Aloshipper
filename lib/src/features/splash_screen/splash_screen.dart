@@ -25,7 +25,6 @@ class SplashScreenState extends State<SplashScreen> {
 
   Future navigator() async {
     try {
-      if (Platform.isIOS) await appData.checkCanPayment();
       await appData.getAppSharing();
     } catch (e) {
       Logger.d('CHECK PAYMENT >>>', e);

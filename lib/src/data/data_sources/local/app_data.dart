@@ -102,8 +102,10 @@ class AppData {
         myCurrentAddress = currentLocation;
         await getIt<ProfileRepository>().updateToaDo(
           tokenLogin,
-          currentLocation?.latitude,
+          currentLocation?.latitude, //21.003648,105.8086358
           currentLocation?.longitude,
+            // 21.003648,
+            // 105.8086358
         );
       },
       onDenied: appData.showDialogOpenAppSettings,
@@ -131,25 +133,19 @@ class AppData {
     }
   }
 
-  Future<void> checkCanPayment() async {
+  Future<void> checkCanPayment(String userId) async {
     try {
-      Options options = Options(
-          receiveDataWhenStatusError: true,
-          sendTimeout: const Duration(seconds: 60), // 60 seconds
-          receiveTimeout: const Duration(seconds: 60) // 60 seconds
-          );
-      final res =
-          await getIt<Dio>().post(ApiPath.checkCanPayment, options: options);
+      final res = await getIt<Dio>().get(ApiPath.getListUserCanNotViewPayment);
       if (res.data != null) {
         Logger.d('Can Payment:', '${res.data.runtimeType}: ${res.data}');
-        if (res.data is String) {
-          final isCanPayment = (res.data as String).toBool();
-          canPayment.add(isCanPayment);
-          return;
+        List<String> list  = [];
+        for (var res in res.data['data']) {
+          list.add(res.toString());
         }
-        if (res.data is bool) {
-          canPayment.add(res.data);
-          return;
+        if(list.where((element) => element == userId).toList().isNotEmpty){
+          canPayment.add(false);
+        }else{
+          canPayment.add(true);
         }
       } else {
         canPayment.add(true);
@@ -158,6 +154,7 @@ class AppData {
       canPayment.add(true);
     }
   }
+
 
   Future<void> getAppSharing() async {
     try {
