@@ -49,7 +49,8 @@
             }
           ]
         }
-      }
+      },
+      "admob_app_id": "ca-app-pub-8286460050735630~1973341467"
     },
     {
       "client_info": {
@@ -65,6 +66,14 @@
           "android_info": {
             "package_name": "com.booking.aloit",
             "certificate_hash": "e044ff928c775d7005d6189296b2f166b98af385"
+          }
+        },
+        {
+          "client_id": "790588632133-ulvfhgqv9lfntu14ma0st30vdcbeja7s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.booking.aloit",
+            "certificate_hash": "0ebbd27ad9839a8d4344be18a82a5a67879ca89e"
           }
         }
       ],
@@ -86,7 +95,8 @@
             }
           ]
         }
-      }
+      },
+      "admob_app_id": "ca-app-pub-8286460050735630~3976688278"
     },
     {
       "client_info": {
@@ -123,7 +133,8 @@
             }
           ]
         }
-      }
+      },
+      "admob_app_id": "ca-app-pub-8286460050735630~8347178120"
     }
   ],
   "configuration_version": "1"

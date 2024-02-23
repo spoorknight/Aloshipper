@@ -870,6 +870,34 @@ class _ProfileApi implements ProfileApi {
   }
 
   @override
+  Future<RideHailingSettingModel> getRideHailingSetting(token) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = FormData();
+    _data.fields.add(MapEntry(
+      'token',
+      token,
+    ));
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<RideHailingSettingModel>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+      contentType: 'multipart/form-data',
+    )
+            .compose(
+              _dio.options,
+              'ride-hailing/get-shipper-ride-hailing-settings',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = RideHailingSettingModel.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
   Future<ResponseBankInfoModel> getBanks() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -929,6 +957,41 @@ class _ProfileApi implements ProfileApi {
             .compose(
               _dio.options,
               'user-bank/create-or-update',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = BaseModel.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<BaseModel> updatePriceRideHailing(
+    token,
+    setting,
+  ) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = FormData();
+    _data.fields.add(MapEntry(
+      'token',
+      token,
+    ));
+    _data.fields.add(MapEntry(
+      'settings',
+      setting,
+    ));
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<BaseModel>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+      contentType: 'multipart/form-data',
+    )
+            .compose(
+              _dio.options,
+              'ride-hailing/insert-or-update-shipper-config',
               queryParameters: queryParameters,
               data: _data,
             )

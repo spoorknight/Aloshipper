@@ -351,6 +351,7 @@ class PersonalInfo extends StatelessWidget {
           ButtonPrice(
               title1: 'Phí gọi xe',
               title2: 'Trạng thái',
+              isGoiXe: true,
               value: profile.data?.item?.user?.phigoixe ?? '0',
               isOpen: profile.data?.item?.user?.isOnBatGoiXe ?? false,
               switchValue: (value) {
@@ -358,15 +359,7 @@ class PersonalInfo extends StatelessWidget {
                     profile.data?.item?.user?.batNhanHang ?? '0');
               },
               editPrice: () {
-                showDialog(
-                  context: context,
-                  builder: (builder) {
-                    return ChangeNotifierProvider.value(
-                      value: viewModel,
-                      child: const PriceSetting(type: PriceType.goiXe),
-                    );
-                  },
-                ).then((value) {
+                AppNavigator.push(Routes.priceSettingRideHailingScreen).then((value) {
                   if (value == true) {
                     viewModel.getProfile();
                   }
@@ -411,7 +404,9 @@ class ButtonPrice extends StatelessWidget {
       this.editPrice,
       this.switchValue,
       this.value = '0',
-      this.isOpen = false});
+      this.isOpen = false,
+      this.isGoiXe = false,
+      });
 
   final String title1;
   final String? title2;
@@ -419,6 +414,7 @@ class ButtonPrice extends StatelessWidget {
   final Function()? editPrice;
   final Function(bool)? switchValue;
   final bool isOpen;
+  final bool isGoiXe;
 
   @override
   Widget build(BuildContext context) {
@@ -443,7 +439,7 @@ class ButtonPrice extends StatelessWidget {
                   title1,
                   style: AppFont.t.s(13).w700.black,
                 ),
-                Text(
+                isGoiXe ? const SizedBox() :  Text(
                   '${value.formatNumber}đ/km',
                   style: AppFont.t.s(13).w400.black,
                 ),

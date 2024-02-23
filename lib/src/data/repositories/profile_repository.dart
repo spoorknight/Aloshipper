@@ -1,4 +1,6 @@
+import 'package:app_shipper/src/features/price_setting_ride_hailing/price_setting_dto.dart';
 import 'package:app_shipper/src/models/list_review_shipper_model/list_review_shipper_model.dart';
+import 'package:app_shipper/src/models/price_setting_ride_hailing_model/ride_hailing_setting_model.dart';
 import 'package:app_shipper/src/models/user_active_info_model.dart';
 
 import '../../models/bank_info.dart';
@@ -22,10 +24,13 @@ abstract class ProfileRepository {
 
   Future<UserBankAccountModel> getUserBanksInfo(String token);
 
-  Future<ResponseBankInfoModel> getBanks();
-
+  Future<RideHailingSettingModel> getRideHailingSetting(String token);
   Future<BaseModel> createOrUpdate(String token, String bank_id,
       String user_bank_name, String user_bank_number);
+
+  Future<ResponseBankInfoModel> getBanks();
+
+  Future<BaseModel> updatePriceRideHailing(String token,String setting);
 
   Future<ListAddressModel> getTinhTPList(String tokenlogin, String device_token);
 

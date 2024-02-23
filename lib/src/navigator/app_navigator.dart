@@ -1,6 +1,8 @@
 import 'package:app_shipper/src/features/cancel_order/cancel_order_view_model.dart';
 import 'package:app_shipper/src/features/cancel_order/cancel_screen.dart';
 import 'package:app_shipper/src/features/info_user_drive/info_user_drive_screen.dart';
+import 'package:app_shipper/src/features/price_setting_ride_hailing/price_setting_ride_hailing_screen.dart';
+import 'package:app_shipper/src/features/price_setting_ride_hailing/price_setting_ride_hailing_view_model.dart';
 import 'package:app_shipper/src/features/statistic/statistic.dart';
 import 'package:app_shipper/src/features/statistic/statistic_view_model.dart';
 import 'package:flutter/material.dart';
@@ -345,7 +347,15 @@ class AppNavigator {
             child:  ExtendScreen(showAppBar: true),
           ),
         );
-
+      case Routes.priceSettingRideHailingScreen:
+        return _buildRoute(
+          settings,
+          ChangeNotifierProvider(
+            create: (context) =>
+            PriceSettingRideHailingViewModel(profileRepo: getIt<ProfileRepository>()),
+            child: const PriceSettingRideHailingScreen(),
+          ),
+        );
       default:
         return null;
     }

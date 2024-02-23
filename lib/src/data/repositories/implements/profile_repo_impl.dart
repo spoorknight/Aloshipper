@@ -1,7 +1,9 @@
 import 'dart:convert';
 
+import 'package:app_shipper/src/features/price_setting_ride_hailing/price_setting_dto.dart';
 import 'package:app_shipper/src/models/list_review_shipper_model/list_review_shipper_model.dart';
 import 'package:app_shipper/src/models/list_service_model.dart';
+import 'package:app_shipper/src/models/price_setting_ride_hailing_model/ride_hailing_setting_model.dart';
 import 'package:app_shipper/src/models/user_active_info_model.dart';
 import 'package:dio/dio.dart';
 
@@ -182,6 +184,11 @@ class ProfileRepoImpl implements ProfileRepository {
   }
 
   @override
+  Future<RideHailingSettingModel> getRideHailingSetting(String token) {
+    return profileApi.getRideHailingSetting(token);
+  }
+
+  @override
   Future<ResponseBankInfoModel> getBanks() {
     return profileApi.getBanks();
   }
@@ -191,6 +198,11 @@ class ProfileRepoImpl implements ProfileRepository {
       String user_bank_name, String user_bank_number) {
     return profileApi.createOrUpdate(
         token, bank_id, user_bank_name, user_bank_number);
+  }
+
+  @override
+  Future<BaseModel> updatePriceRideHailing(String token,String setting) {
+    return profileApi.updatePriceRideHailing(token,setting);
   }
 
   @override

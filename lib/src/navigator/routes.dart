@@ -10,6 +10,7 @@ class Routes {
   static const String boughtCustomer = 'boughtCustomer';
   static const String discountProduct = 'discountProduct';
   static const String personalScreen = 'personalScreen';
+  static const String priceSettingRideHailingScreen = 'priceSettingRideHailingScreen';
   static const String updateProfile = 'updateProfile';
   static const String infoUserDriveScreen = 'InfoUserDriveScreen';
   static const String verifyAccount = 'verifyAccount';

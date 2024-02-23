@@ -1,5 +1,6 @@
 import 'package:app_shipper/src/models/list_review_shipper_model/list_review_shipper_model.dart';
 import 'package:app_shipper/src/models/list_service_model.dart';
+import 'package:app_shipper/src/models/price_setting_ride_hailing_model/ride_hailing_setting_model.dart';
 import 'package:app_shipper/src/models/user_active_info_model.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/http.dart';
@@ -185,6 +186,11 @@ abstract class ProfileApi {
     @Part(name: 'token') String token,
   );
 
+  @POST(ApiPath.getRideHailingSetting)
+  @MultiPart()
+  Future<RideHailingSettingModel> getRideHailingSetting(
+      @Part(name: 'token') String token,);
+
   @GET(ApiPath.getBanks)
   Future<ResponseBankInfoModel> getBanks();
 
@@ -195,6 +201,13 @@ abstract class ProfileApi {
     @Part(name: 'bank_id') String bank_id,
     @Part(name: 'user_bank_name') String user_bank_name,
     @Part(name: 'user_bank_number') String user_bank_number,
+  );
+
+  @POST(ApiPath.updateRideHailingSetting)
+  @MultiPart()
+  Future<BaseModel> updatePriceRideHailing(
+    @Part(name: 'token') String token,
+    @Part(name: 'settings') String setting,
   );
 
   @POST(ApiPath.giftCreate)
