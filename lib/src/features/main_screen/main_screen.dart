@@ -23,10 +23,7 @@ class _MainScreenState extends State<MainScreen> {
     const Statistic(),
     const NotificationsScreen(),
     // const ProfileScreen(),
-    ChangeNotifierProvider(
-      create: (context) => getIt<ProfileViewModel>(),
-      child: const ProfileScreen(),
-    )
+    const ProfileScreen()
   ];
 
   int _selectedTab = 0;

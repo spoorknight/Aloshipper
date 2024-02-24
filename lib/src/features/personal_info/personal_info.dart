@@ -224,27 +224,27 @@ class PersonalInfo extends StatelessWidget {
           },
         ),
         const Divider(color: Palette.grey, height: 1),
-        StreamBuilder<bool>(
-            stream: appData.canPayment,
-            builder: (context, canPayment) {
-              if (canPayment.data == true) {
-                return ChevronRightButton(
-                  title: 'Gia hạn tài khoản',
-                  onTap: () {
-                    Navigator.pushNamed(
-                      context,
-                      Routes.extendScreen,
-                      arguments: {
-                        'profileViewModel': viewModel,
-                      },
-                    );
-                  },
-                );
-              } else {
-                return const SizedBox();
-              }
-            }),
-        const Divider(color: Palette.grey, height: 1),
+        // StreamBuilder<bool>(
+        //     stream: appData.canPayment,
+        //     builder: (context, canPayment) {
+        //       if (canPayment.data == true) {
+        //         return ChevronRightButton(
+        //           title: 'Gia hạn tài khoản',
+        //           onTap: () {
+        //             Navigator.pushNamed(
+        //               context,
+        //               Routes.extendScreen,
+        //               arguments: {
+        //                 'profileViewModel': viewModel,
+        //               },
+        //             );
+        //           },
+        //         );
+        //       } else {
+        //         return const SizedBox();
+        //       }
+        //     }),
+        // const Divider(color: Palette.grey, height: 1),
         ChevronRightButton(
           title: 'Điều khoản',
           onTap: () => launchUrlString(

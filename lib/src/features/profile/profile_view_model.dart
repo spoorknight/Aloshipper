@@ -26,6 +26,7 @@ class ProfileViewModel extends BaseViewModel {
 
   RefreshController refreshProfileCtl = RefreshController();
 
+
   final phiGiaoHangEC = TextEditingController();
   final phiKmDauTien = TextEditingController();
   final phiGoiXeEC = TextEditingController();
@@ -96,7 +97,7 @@ class ProfileViewModel extends BaseViewModel {
         );
         if (resProfileRepo.status == true) {
           appData.profile.add(resProfileRepo);
-          ShowToast.success(res.mess);
+           // ShowToast.success(res.mess);
         } else {
           ShowToast.error(resProfileRepo.mess);
         }
