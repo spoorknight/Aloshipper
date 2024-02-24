@@ -62,13 +62,13 @@ class PriceSettingRideHailingViewModel extends BaseViewModel{
             FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
           ],
           autovalidateMode: autoValidateMode,
-          errorText: "Giá cước không thuộc khoảng cho phép",
+          errorText: "Giá cước không hợp lệ",
           validator: (value) {
             if (value == null || value.trim().isEmpty) {
               return 'Giá cước không được để trống';
             }
             if(!(int.parse(value.removeComma) >= int.parse(e.minPrice??"0") && int.parse(value.removeComma) <= int.parse(e.maxPrice??"0"))){
-              return 'Giá cước chỉ được nhập từ ${e.minPrice?.formatNumber} đến ${e.maxPrice?.formatNumber}';
+              return 'Giá cước không hợp lệ';
             }
             return null;
           },

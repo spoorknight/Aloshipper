@@ -24,7 +24,7 @@ class ListExtendWidget extends StatelessWidget {
                   context: context,
                   builder: (builder) {
                     return DialogConfirm(
-                      mess: 'Bạn có muốn mua sử dụng gói này không?',
+                      mess: 'Bạn có chắc muốn mua gói này không?',
                       action: (){
                         viewModel.thanhToanGoiDichVu(item.id);
                         AppNavigator.pop();
