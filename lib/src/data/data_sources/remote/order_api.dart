@@ -1,5 +1,6 @@
 import 'package:app_shipper/src/models/cancel_order_model.dart';
 import 'package:app_shipper/src/models/list_order_model/list_order_model.dart';
+import 'package:app_shipper/src/models/list_order_model/list_order_statistic_model.dart';
 import 'package:app_shipper/src/models/shared_models/base_model.dart';
 
 import '../../../models/detail_order_model/detail_order_model.dart';
@@ -51,6 +52,15 @@ abstract class OrderApi {
     @Part(name: 'date_to') String? date_to,
     @Part(name: 'page') int page,
     @Part(name: 'per_page') int per_page,
+  );
+
+  @POST(ApiPath.getOrders)
+  @MultiPart()
+  Future<ListOrderStatisticModel> getListOrders(
+    @Part(name: 'token') String tokenlogin,
+    @Part(name: 'page') int page,
+    @Part(name: 'per_page') int per_page,
+    @Part(name: 'order_status') String order_status,
   );
 
   @POST(ApiPath.ShipperHuyDonHangNew)

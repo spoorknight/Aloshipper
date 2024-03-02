@@ -1,5 +1,6 @@
 import 'package:app_shipper/src/models/cancel_order_model.dart';
 import 'package:app_shipper/src/models/list_order_model/list_order_model.dart';
+import 'package:app_shipper/src/models/list_order_model/list_order_statistic_model.dart';
 
 import '../../models/detail_order_model/detail_order_model.dart';
 import '../../models/shared_models/base_model.dart';
@@ -33,6 +34,13 @@ abstract class OrderRepository {
     String? date_to,
     int page,
     int per_page,
+  );
+
+ Future<ListOrderStatisticModel> getListOrders(
+    String tokenlogin,
+    int page,
+    int per_page,
+     String order_status,
   );
 
   Future<BaseModel> cancelOrder(

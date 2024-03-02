@@ -227,6 +227,51 @@ class _OrderApi implements OrderApi {
   }
 
   @override
+  Future<ListOrderStatisticModel> getListOrders(
+    tokenlogin,
+    page,
+    per_page,
+    order_status,
+  ) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = FormData();
+    _data.fields.add(MapEntry(
+      'token',
+      tokenlogin,
+    ));
+    _data.fields.add(MapEntry(
+      'page',
+      page.toString(),
+    ));
+    _data.fields.add(MapEntry(
+      'per_page',
+      per_page.toString(),
+    ));
+    _data.fields.add(MapEntry(
+      'order_status',
+      order_status,
+    ));
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ListOrderStatisticModel>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+      contentType: 'multipart/form-data',
+    )
+            .compose(
+              _dio.options,
+              'getOrders',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = ListOrderStatisticModel.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
   Future<BaseModel> cancelOrder(
     tokenlogin,
     device_token,

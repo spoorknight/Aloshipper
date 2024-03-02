@@ -52,8 +52,8 @@ class ApiPath {
   static const String getCancelReasons = 'getCancelReasons';
   static const String updateStatusOrderByShipper = 'UpdateStatusOrderByShipperNew';
   static const String shopOnlineActive = 'ShopOnlineActive';
-  static const String getListCompletedOrdersShipper =
-      'getListCompletedOrdersShipper';
+  static const String getListCompletedOrdersShipper = 'getListCompletedOrdersShipper';
+  static const String getOrders = 'getOrders';
   static const String cancelOrder = 'ShipperHuyDonHang';
   static const String ShipperHuyDonHangNew = 'ShipperHuyDonHangNew';
 

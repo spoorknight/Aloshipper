@@ -1,5 +1,6 @@
 import 'package:app_shipper/src/models/cancel_order_model.dart';
 import 'package:app_shipper/src/models/list_order_model/list_order_model.dart';
+import 'package:app_shipper/src/models/list_order_model/list_order_statistic_model.dart';
 import 'package:app_shipper/src/models/shared_models/base_model.dart';
 
 import '../../data_sources/remote/order_api.dart';
@@ -30,6 +31,12 @@ class OrderRepoImpl implements OrderRepository {
   Future<ListOrderModel> getListCompletedOrdersShipper(
       String tokenlogin, String device_token, String? date, String? date_to, int page, int per_page) {
     return orderApi.getListCompletedOrdersShipper(tokenlogin, device_token, date, date_to, page, per_page);
+  }
+
+  @override
+  Future<ListOrderStatisticModel> getListOrders(
+      String tokenlogin, int page, int per_page,String order_status) {
+    return orderApi.getListOrders(tokenlogin,page, per_page,order_status);
   }
 
   @override
