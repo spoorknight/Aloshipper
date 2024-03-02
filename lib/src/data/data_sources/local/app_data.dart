@@ -40,7 +40,7 @@ class AppData {
   final canPayment = BehaviorSubject<bool>.seeded(true);
   UserInfoActiveModel? userInfoActiveModel;
 
-  Environment _env = Environment.prod;
+  Environment _env = Environment.staging;
 
   Dio? myDio;
 

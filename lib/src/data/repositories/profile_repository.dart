@@ -77,6 +77,7 @@ abstract class ProfileRepository {
     String tokenlogin,
     String device_token,
     String phigiaohang,
+    String fee_per_km,
   );
   Future<BaseModel> updatePhiGoiXe(
     String tokenlogin,

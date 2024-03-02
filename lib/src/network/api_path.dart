@@ -3,7 +3,7 @@ class ApiPath {
   static const String _apiVersion = 'apiv3';
   static const String baseUrl = 'https://alotoday.vn/$_apiVersion/';
   static const String baseUrlStaging =
-      'https://gitdeploy.alotoday.vn/$_apiVersion/';
+      'https://stagingtest.alotoday.vn/$_apiVersion/';
 
   //* Authen
   static const String loginMember = 'LoginShipper';
@@ -82,4 +82,12 @@ class ApiPath {
   static const String exchangePointsToGift = 'exchangePointsToGift';
   static const String getAlotodayVouchers = 'getAlotodayVouchers';
   static const String getBannerAdsAdmobKeys = 'getBannerAdsAdmobKeys';
+
+
+  ///News
+  static const String getNotiNews = 'getNews';
+  static const String readNotiNews = 'readNotification';
+  static const String countUnReadNotiNews = 'countUnreadNotification';
+
+
 }

@@ -25,6 +25,7 @@ class Routes {
 
   static const String extendScreen = 'ExtendScreen';
   static const String collaborateScreen = 'collaborateScreen';
+  static const String detailNewScreen = 'detailNewScreen';
 
   //event
   static const String listStoresScreen = 'ListStoresScreen';

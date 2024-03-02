@@ -59,7 +59,7 @@ class PersonalInfo extends StatelessWidget {
                           _feeView(context, profile, viewModel),
                           BoxConst.s16,
                           _logout(context, viewModel),
-                          _removeAccount(context, viewModel),
+                         if(appData.canPayment.value == true )_removeAccount(context, viewModel),
                         ],
                       );
                     }),
@@ -329,29 +329,28 @@ class PersonalInfo extends StatelessWidget {
       padding: AppTheme.mainPadding,
       child: Column(
         children: [
-          ButtonPrice(
-              title1: 'Phí Km đầu',
-              value: profile.data?.item?.user?.phiKmDauTien ?? '0',
-              editPrice: () {
-                showDialog(
-                  context: context,
-                  builder: (builder) {
-                    return ChangeNotifierProvider.value(
-                      value: viewModel,
-                      child: const PriceSetting(type: PriceType.phiKmDau),
-                    );
-                  },
-                ).then((value) {
-                  if (value == true) {
-                    viewModel.getProfile();
-                  }
-                });
-              }),
+          // ButtonPrice(
+          //     title1: 'Phí Km đầu',
+          //     value: profile.data?.item?.user?.phiKmDauTien ?? '0',
+          //     editPrice: () {
+          //       showDialog(
+          //         context: context,
+          //         builder: (builder) {
+          //           return ChangeNotifierProvider.value(
+          //             value: viewModel,
+          //             child: const PriceSetting(type: PriceType.phiKmDau),
+          //           );
+          //         },
+          //       ).then((value) {
+          //         if (value == true) {
+          //           viewModel.getProfile();
+          //         }
+          //       });
+          //     }),
           BoxConst.s8,
           ButtonPrice(
               title1: 'Phí gọi xe',
               title2: 'Trạng thái',
-              isGoiXe: true,
               value: profile.data?.item?.user?.phigoixe ?? '0',
               isOpen: profile.data?.item?.user?.isOnBatGoiXe ?? false,
               switchValue: (value) {
@@ -359,7 +358,7 @@ class PersonalInfo extends StatelessWidget {
                     profile.data?.item?.user?.batNhanHang ?? '0');
               },
               editPrice: () {
-                AppNavigator.push(Routes.priceSettingRideHailingScreen).then((value) {
+                AppNavigator.push(Routes.priceSettingRideHailingScreen,arguments: true).then((value) {
                   if (value == true) {
                     viewModel.getProfile();
                   }
@@ -367,7 +366,7 @@ class PersonalInfo extends StatelessWidget {
               }),
           BoxConst.s8,
           ButtonPrice(
-              title1: 'Phí giao hàng',
+              title1: 'Phí giao đồ ăn',
               title2: 'Trạng thái',
               value: profile.data?.item?.user?.phigiaohang ?? '0',
               isOpen: profile.data?.item?.user?.isOnBatNhanDon ?? false,
@@ -376,15 +375,7 @@ class PersonalInfo extends StatelessWidget {
                     value ? '1' : '0');
               },
               editPrice: () {
-                showDialog(
-                  context: context,
-                  builder: (builder) {
-                    return ChangeNotifierProvider.value(
-                      value: viewModel,
-                      child: const PriceSetting(type: PriceType.giaoHang),
-                    );
-                  },
-                ).then((value) {
+                AppNavigator.push(Routes.priceSettingRideHailingScreen,arguments: false).then((value) {
                   if (value == true) {
                     viewModel.getProfile();
                   }
@@ -405,7 +396,6 @@ class ButtonPrice extends StatelessWidget {
       this.switchValue,
       this.value = '0',
       this.isOpen = false,
-      this.isGoiXe = false,
       });
 
   final String title1;
@@ -414,7 +404,6 @@ class ButtonPrice extends StatelessWidget {
   final Function()? editPrice;
   final Function(bool)? switchValue;
   final bool isOpen;
-  final bool isGoiXe;
 
   @override
   Widget build(BuildContext context) {
@@ -439,10 +428,10 @@ class ButtonPrice extends StatelessWidget {
                   title1,
                   style: AppFont.t.s(13).w700.black,
                 ),
-                isGoiXe ? const SizedBox() :  Text(
-                  '${value.formatNumber}đ/km',
-                  style: AppFont.t.s(13).w400.black,
-                ),
+                // isGoiXe ? const SizedBox() :  Text(
+                //   '${value.formatNumber}đ/km',
+                //   style: AppFont.t.s(13).w400.black,
+                // ),
               ],
             ),
             if (title2 != null) ...[

@@ -61,7 +61,7 @@ class LoginViewModel extends BaseViewModel {
   }
 
   void _getRememberMe() async {
-    isRemember = dataManager.getBool(AppConstants.rememberMe);
+    // isRemember = dataManager.getBool(AppConstants.rememberMe);
     if (isRemember) {
       accountController.text = dataManager.getString(AppConstants.userName);
       passwordController.text = dataManager.getString(AppConstants.password);

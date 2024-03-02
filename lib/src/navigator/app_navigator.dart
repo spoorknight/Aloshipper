@@ -1,10 +1,12 @@
 import 'package:app_shipper/src/features/cancel_order/cancel_order_view_model.dart';
 import 'package:app_shipper/src/features/cancel_order/cancel_screen.dart';
+import 'package:app_shipper/src/features/detail_new/detail_new_view.dart';
 import 'package:app_shipper/src/features/info_user_drive/info_user_drive_screen.dart';
 import 'package:app_shipper/src/features/price_setting_ride_hailing/price_setting_ride_hailing_screen.dart';
 import 'package:app_shipper/src/features/price_setting_ride_hailing/price_setting_ride_hailing_view_model.dart';
 import 'package:app_shipper/src/features/statistic/statistic.dart';
 import 'package:app_shipper/src/features/statistic/statistic_view_model.dart';
+import 'package:app_shipper/src/models/list_notification_model/list_new_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -348,13 +350,20 @@ class AppNavigator {
           ),
         );
       case Routes.priceSettingRideHailingScreen:
+        final isGoiXe =  settings.arguments as bool;
         return _buildRoute(
           settings,
           ChangeNotifierProvider(
             create: (context) =>
-            PriceSettingRideHailingViewModel(profileRepo: getIt<ProfileRepository>()),
+            PriceSettingRideHailingViewModel(profileRepo: getIt<ProfileRepository>(), isGoiXe:isGoiXe),
             child: const PriceSettingRideHailingScreen(),
           ),
+        );
+      case Routes.detailNewScreen:
+        final model = settings.arguments as NotificationNewModel;
+        return _buildRoute(
+          settings,
+          DetailNewScreen(model: model)
         );
       default:
         return null;

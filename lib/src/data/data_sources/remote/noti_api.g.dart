@@ -63,6 +63,113 @@ class _NotiApi implements NotiApi {
     return value;
   }
 
+  @override
+  Future<ListNewModel> getListNew(
+    tokenlogin,
+    page,
+    per_page,
+    read_type,
+  ) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = FormData();
+    _data.fields.add(MapEntry(
+      'token',
+      tokenlogin,
+    ));
+    _data.fields.add(MapEntry(
+      'page',
+      page.toString(),
+    ));
+    _data.fields.add(MapEntry(
+      'per_page',
+      per_page.toString(),
+    ));
+    _data.fields.add(MapEntry(
+      'read_type',
+      read_type,
+    ));
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ListNewModel>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+      contentType: 'multipart/form-data',
+    )
+            .compose(
+              _dio.options,
+              'getNews',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = ListNewModel.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<CountUnreadNewModel> countUnReadNew(tokenlogin) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = FormData();
+    _data.fields.add(MapEntry(
+      'token',
+      tokenlogin,
+    ));
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<CountUnreadNewModel>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+      contentType: 'multipart/form-data',
+    )
+            .compose(
+              _dio.options,
+              'countUnreadNotification',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = CountUnreadNewModel.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<dynamic> readNew(
+    tokenlogin,
+    noti_id,
+  ) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = FormData();
+    _data.fields.add(MapEntry(
+      'token',
+      tokenlogin,
+    ));
+    _data.fields.add(MapEntry(
+      'noti_id',
+      noti_id,
+    ));
+    final _result = await _dio.fetch(_setStreamType<dynamic>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+      contentType: 'multipart/form-data',
+    )
+        .compose(
+          _dio.options,
+          'readNotification',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = _result.data;
+    return value;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||

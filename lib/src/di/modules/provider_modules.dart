@@ -91,9 +91,11 @@ class ProviderModule extends DIModule {
         profileRepo: getIt<ProfileRepository>(),
       ),
     );
-    getIt.registerFactory<PriceSettingRideHailingViewModel>(
-      () => PriceSettingRideHailingViewModel(
-        profileRepo: getIt<ProfileRepository>(),
+    getIt.registerFactoryParam<PriceSettingRideHailingViewModel,ProfileRepository,
+        bool>(
+          (profileRepository,isGoiXe) => PriceSettingRideHailingViewModel(
+            profileRepo: profileRepository,
+        isGoiXe: isGoiXe,
       ),
     );
     getIt.registerFactory<NotificationViewModel>(

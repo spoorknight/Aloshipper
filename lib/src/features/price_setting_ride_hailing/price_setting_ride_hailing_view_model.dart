@@ -18,9 +18,15 @@ import '../../configs/config.dart';
 
 class PriceSettingRideHailingViewModel extends BaseViewModel{
   final ProfileRepository profileRepo;
+  final bool isGoiXe;
 
-  PriceSettingRideHailingViewModel({required this.profileRepo}) : super() {
-    getData();
+  PriceSettingRideHailingViewModel({required this.profileRepo,required this.isGoiXe}) : super() {
+    if(isGoiXe){
+      getData();
+    }else{
+      priceKmDeliveryFirst.text = appData.getProfile?.item?.user?.phiKmDauTien ?? "";
+      priceKmDeliveryNext.text = appData.getProfile?.item?.user?.phigiaohang ?? "";
+    }
   }
 
   List<Widget> widgetForm = [];
@@ -85,6 +91,66 @@ class PriceSettingRideHailingViewModel extends BaseViewModel{
   }
 
 
+List<Widget> widgetDelivery(){
+    return [
+      Padding(
+        padding: AppTheme.mainPadding,
+        child: CustomTextFormField(
+          title: "Giá km đầu",
+          hintText: 'Nhập giá cước mong muốn',
+          controller: priceKmDeliveryFirst,
+          inputType: TextInputType.number,
+          inputFormatters: [
+            FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
+          ],
+          autovalidateMode: autoValidateMode,
+          errorText: "Giá cước không hợp lệ",
+          validator: (value) {
+            if (value == null || value.trim().isEmpty) {
+              return 'Giá cước không được để trống';
+            }
+            return null;
+          },
+          onChanged: (v) {
+            final string = v.formatNumber;
+            priceKmDeliveryFirst?.value = TextEditingValue(
+              text: string,
+              selection: TextSelection.collapsed(offset: string.length),
+            );
+          },
+        ),
+      ),
+      BoxConst.s16,
+      Padding(
+        padding: AppTheme.mainPadding,
+        child: CustomTextFormField(
+          title: "Giá km tiếp theo",
+          hintText: 'Nhập giá cước mong muốn',
+          controller: priceKmDeliveryNext,
+          inputType: TextInputType.number,
+          inputFormatters: [
+            FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
+          ],
+          autovalidateMode: autoValidateMode,
+          errorText: "Giá cước không hợp lệ",
+          validator: (value) {
+            if (value == null || value.trim().isEmpty) {
+              return 'Giá cước không được để trống';
+            }
+            return null;
+          },
+          onChanged: (v) {
+            final string = v.formatNumber;
+            priceKmDeliveryNext.value = TextEditingValue(
+              text: string,
+              selection: TextSelection.collapsed(offset: string.length),
+            );
+          },
+        ),
+      )
+    ];
+}
+
   Future updateFee() async{
     final bool isValid = formKey.currentState?.validate() == true;
     print(">>>>>> $isValid");
@@ -107,8 +173,32 @@ class PriceSettingRideHailingViewModel extends BaseViewModel{
         autoValidateMode = AutovalidateMode.onUserInteraction;
         notifyListeners();
     }
-
-
   }
+
+  final priceKmDeliveryFirst = TextEditingController();
+  final priceKmDeliveryNext = TextEditingController();
+  Future<void> updatePhiGiaoHang() async {
+    EasyLoading.show();
+    try {
+      final res = await profileRepo.updatePhiGiaoHang(
+        appData.tokenLogin,
+        appData.firebaseToken,
+        priceKmDeliveryNext.text.removeComma,
+        priceKmDeliveryFirst.text.removeComma,
+      );
+      if (res.status == true) {
+        priceKmDeliveryFirst.clear();
+        priceKmDeliveryNext.clear();
+        AppNavigator.pop(true);
+      } else {
+        ShowToast.error(res.mess ?? res.item);
+      }
+    } catch (e) {
+      Logger.d('updatePhiGoiXe >>>', e);
+    } finally {
+      EasyLoading.dismiss();
+    }
+  }
+
 
 }

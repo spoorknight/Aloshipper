@@ -17,31 +17,39 @@ class PriceSettingRideHailingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final viewModel = context.watch<PriceSettingRideHailingViewModel>();
     return MyScaffold(
-        bgColor: Palette.white,
-        padding: EdgeInsets.zero,
-        appBar:MyAppBar(
-          title: "Cài đặt phí gọi xe",
-          backgroundColor: Palette.white,
-          leading: InkWell(
-            child: const Icon(Icons.arrow_back_ios, color: Palette.black),
-            onTap: () => AppNavigator.pop(),
-          ),
-        )
-    , body: Padding(
+      bgColor: Palette.white,
+      padding: EdgeInsets.zero,
+      appBar:MyAppBar(
+        title: viewModel.isGoiXe == true ?"Cài đặt phí gọi xe" : "Cài đặt phí giao đồ ăn",
+        backgroundColor: Palette.white,
+        leading: InkWell(
+          child: const Icon(Icons.arrow_back_ios, color: Palette.black),
+          onTap: () => AppNavigator.pop(),
+        ),
+      )
+      , body: Padding(
       padding: const EdgeInsets.only(top: 20),
       child: Form(
         key: viewModel.formKey,
         child: Column(
           children: [
-            Expanded(child: Column(children: viewModel.widgetForm,)),
+            Expanded(
+                child: Column(
+                    children: viewModel.isGoiXe == true ? viewModel.widgetForm : viewModel.widgetDelivery()
+                )
+            ),
             BoxConst.s16,
-        MyButton(
-            title: 'Xác nhận',
-            borderRadius: 4,
-            action: () async{
-              context.hideKeyboard;
-             await viewModel.updateFee();
-            })
+            MyButton(
+                title: 'Xác nhận',
+                borderRadius: 4,
+                action: () async{
+                  context.hideKeyboard;
+                  if(viewModel.isGoiXe == true){
+                    await viewModel.updateFee();
+                  }else {
+                    await viewModel.updatePhiGiaoHang();
+                  }
+                })
           ],
         ),
       ),

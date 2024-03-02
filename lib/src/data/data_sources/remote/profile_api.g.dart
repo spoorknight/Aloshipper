@@ -486,6 +486,7 @@ class _ProfileApi implements ProfileApi {
     tokenlogin,
     device_token,
     phigiaohang,
+    fee_per_km,
   ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -502,6 +503,10 @@ class _ProfileApi implements ProfileApi {
     _data.fields.add(MapEntry(
       'phigiaohang',
       phigiaohang,
+    ));
+    _data.fields.add(MapEntry(
+      'fee_per_km',
+      fee_per_km,
     ));
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<BaseModel>(Options(

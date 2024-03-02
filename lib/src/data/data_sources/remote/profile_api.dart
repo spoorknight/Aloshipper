@@ -115,6 +115,7 @@ abstract class ProfileApi {
     @Part(name: 'tokenlogin') String tokenlogin,
     @Part(name: 'device_token') String device_token,
     @Part(name: 'phigiaohang') String phigiaohang,
+    @Part(name: 'fee_per_km') String fee_per_km,
   );
 
   @POST(ApiPath.updateFeeShipper)

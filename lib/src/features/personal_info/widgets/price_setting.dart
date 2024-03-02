@@ -112,7 +112,7 @@ class PriceSetting extends StatelessWidget {
               viewModel.updatePhiKmDauTien();
               break;
             case PriceType.giaoHang:
-              viewModel.updatePhiGiaoHang();
+              // viewModel.updatePhiGiaoHang();
               break;
             case PriceType.goiXe:
               viewModel.updatePhiGoiXe();

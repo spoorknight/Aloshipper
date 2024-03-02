@@ -29,7 +29,7 @@ abstract class DIModule {
 class Injection {
   static Future<void> inject() async {
     await ComponentModules().register();
-    appData.setEnvironment(Environment.prod);
+    appData.setEnvironment(Environment.staging);
     await ApiModule().register();
     await ProviderModule().register();
     await RepositoryModules().register();

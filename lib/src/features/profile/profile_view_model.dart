@@ -132,26 +132,26 @@ class ProfileViewModel extends BaseViewModel {
     }
   }
 
-  Future<void> updatePhiGiaoHang() async {
-    EasyLoading.show();
-    try {
-      final res = await profileRepo.updatePhiGiaoHang(
-        appData.tokenLogin,
-        appData.firebaseToken,
-        phiGiaoHangEC.text.removeComma,
-      );
-      if (res.status == true) {
-        phiGiaoHangEC.clear();
-        AppNavigator.pop(true);
-      } else {
-        ShowToast.error(res.mess ?? res.item);
-      }
-    } catch (e) {
-      Logger.d('updatePhiGoiXe >>>', e);
-    } finally {
-      EasyLoading.dismiss();
-    }
-  }
+  // Future<void> updatePhiGiaoHang() async {
+  //   EasyLoading.show();
+  //   try {
+  //     final res = await profileRepo.updatePhiGiaoHang(
+  //       appData.tokenLogin,
+  //       appData.firebaseToken,
+  //       phiGiaoHangEC.text.removeComma,
+  //     );
+  //     if (res.status == true) {
+  //       phiGiaoHangEC.clear();
+  //       AppNavigator.pop(true);
+  //     } else {
+  //       ShowToast.error(res.mess ?? res.item);
+  //     }
+  //   } catch (e) {
+  //     Logger.d('updatePhiGoiXe >>>', e);
+  //   } finally {
+  //     EasyLoading.dismiss();
+  //   }
+  // }
 
   Future<void> updatePhiGoiXe() async {
     EasyLoading.show();

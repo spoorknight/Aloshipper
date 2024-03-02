@@ -5,9 +5,9 @@ import 'package:app_shipper/src/navigator/routes.dart';
 import 'package:expansion_widget/expansion_widget.dart';
 import 'package:flutter/material.dart';
 
-import '../../configs/config.dart';
-import '../../models/list_notification_model/notification_model.dart';
-import '../../utils/helpers/logger.dart';
+import '../../../configs/config.dart';
+import '../../../models/list_notification_model/notification_model.dart';
+import '../../../utils/helpers/logger.dart';
 
 class ItemNoti extends StatelessWidget {
   const ItemNoti({Key? key, required this.noti}) : super(key: key);
@@ -156,10 +156,7 @@ class ItemNoti extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 16.w),
-      decoration: BoxDecoration(
-        color: Palette.white,
-        borderRadius: BorderRadius.circular(8),
-      ),
+      decoration: AppTheme.boxDecoration.copyWith(borderRadius: BorderRadius.circular(10)),
       child: ExpansionWidget(
           initiallyExpanded: false,
           titleBuilder:

@@ -102,8 +102,8 @@ class ProfileRepoImpl implements ProfileRepository {
 
   @override
   Future<BaseModel> updatePhiGiaoHang(
-      String tokenlogin, String device_token, String phigiaohang) {
-    return profileApi.updatePhiGiaoHang(tokenlogin, device_token, phigiaohang);
+      String tokenlogin, String device_token, String phigiaohang,String fee_per_km) {
+    return profileApi.updatePhiGiaoHang(tokenlogin, device_token, phigiaohang,fee_per_km);
   }
 
   @override
