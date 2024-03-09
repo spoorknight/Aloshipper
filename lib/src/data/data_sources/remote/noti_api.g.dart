@@ -137,6 +137,41 @@ class _NotiApi implements NotiApi {
   }
 
   @override
+  Future<NotificationNewModel> getDetailNoti(
+    tokenlogin,
+    id,
+  ) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = FormData();
+    _data.fields.add(MapEntry(
+      'token',
+      tokenlogin,
+    ));
+    _data.fields.add(MapEntry(
+      'noti_id',
+      id,
+    ));
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<NotificationNewModel>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+      contentType: 'multipart/form-data',
+    )
+            .compose(
+              _dio.options,
+              'detailNotification',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = NotificationNewModel.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
   Future<dynamic> readNew(
     tokenlogin,
     noti_id,
