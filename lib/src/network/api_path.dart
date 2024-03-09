@@ -88,6 +88,7 @@ class ApiPath {
   static const String getNotiNews = 'getNews';
   static const String readNotiNews = 'readNotification';
   static const String countUnReadNotiNews = 'countUnreadNotification';
+  static const String getDetailNotiNew = 'detailNotification';
 
 
 }

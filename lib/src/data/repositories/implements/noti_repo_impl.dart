@@ -32,6 +32,13 @@ class NotiRepoImpl implements NotificationRepository {
   }
 
   @override
+  Future<NotificationNewModel> getDetailNoti(
+      String tokenlogin,String id) {
+    return notiApi.getDetailNoti(
+        tokenlogin,id);
+  }
+
+  @override
   Future readNew(
       String tokenlogin,String noti_id) {
     return notiApi.readNew(

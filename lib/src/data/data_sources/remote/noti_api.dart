@@ -37,6 +37,13 @@ abstract class NotiApi {
       @Part(name: 'token') String tokenlogin,
       );
 
+  @POST(ApiPath.getDetailNotiNew)
+  @MultiPart()
+  Future<NotificationNewModel> getDetailNoti(
+      @Part(name: 'token') String tokenlogin,
+      @Part(name: 'noti_id') String id,
+      );
+
   @POST(ApiPath.readNotiNews)
   @MultiPart()
   Future readNew(

@@ -2,6 +2,10 @@
 import 'dart:convert';
 
 class NotiResModel {
+  String? id;
+  String? link;
+  String? type;
+  String? noti_type;
   String? title;
   String? body;
   String? icon;
@@ -9,6 +13,10 @@ class NotiResModel {
   String? theLoai;
   NotiResModel({
     this.title,
+    this.id,
+    this.link,
+    this.type,
+    this.noti_type,
     this.icon,
     this.transactionId,
     this.theLoai,
@@ -17,6 +25,10 @@ class NotiResModel {
 
   NotiResModel copyWith({
     String? title,
+    String? id,
+    String? link,
+    String? type,
+    String? noti_type,
     String? icon,
     String? transactionId,
     String? theLoai,
@@ -24,6 +36,10 @@ class NotiResModel {
   }) {
     return NotiResModel(
       title: title ?? this.title,
+      id: id ?? this.id,
+      link: link ?? this.link,
+      type: type ?? this.type,
+      noti_type: noti_type ?? this.noti_type,
       icon: icon ?? this.icon,
       transactionId: transactionId ?? this.transactionId,
       theLoai: theLoai ?? this.theLoai,
@@ -34,6 +50,10 @@ class NotiResModel {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'title': title,
+      'id': id,
+      'link': link,
+      'type': type,
+      'noti_type': noti_type,
       'icon': icon,
       'transactionId': transactionId,
       'theloai': theLoai,
@@ -44,6 +64,10 @@ class NotiResModel {
   factory NotiResModel.fromJson(Map<String, dynamic> map) {
     return NotiResModel(
       title: map['title'] != null ? map['title'] as String : null,
+      id: map['id'] != null ? map['id'] as String : null,
+      link: map['link'] != null ? map['link'] as String : null,
+      type: map['type'] != null ? map['type'] as String : null,
+      noti_type: map['noti_type'] != null ? map['noti_type'] as String : null,
       body: map['body'] != null ? map['body'] as String : null,
       icon: map['icon'] != null ? map['icon'] as String : null,
       transactionId: map['transaction_id'] != null ? map['transaction_id'] as String : null,

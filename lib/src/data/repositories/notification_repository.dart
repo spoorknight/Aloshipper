@@ -13,6 +13,9 @@ abstract class NotificationRepository {
   Future<CountUnreadNewModel> countUnReadNew(
       String tokenlogin);
 
+  Future<NotificationNewModel> getDetailNoti(
+      String tokenlogin,String id);
+
   Future readNew(
       String tokenlogin,String noti_id);
 

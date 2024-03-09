@@ -3,7 +3,6 @@ import 'package:app_shipper/src/features/statistic/widgets/item_order.dart';
 import 'package:app_shipper/src/models/list_order_model/list_order_statistic_model.dart';
 import 'package:app_shipper/src/models/list_order_model/order.dart';
 import 'package:app_shipper/src/shared/empty.dart';
-import 'package:app_shipper/src/shared/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 

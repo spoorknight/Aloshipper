@@ -1,11 +1,16 @@
 import 'dart:convert';
 
+import 'package:app_shipper/src/models/list_notification_model/list_new_model.dart';
+import 'package:app_shipper/src/navigator/app_navigator.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 import '../../features/detail_order/detail_order_view_model.dart';
+import '../../features/notifications/notification_view_model.dart';
 import '../../features/profile/profile_view_model.dart';
 import '../../models/shared_models/noti_res_model.dart';
+import '../../navigator/routes.dart';
 import '../../utils/helpers/logger.dart';
 import '../injection/injection.dart';
 
@@ -59,7 +64,7 @@ enum NotificationType {
   }
 }
 
-void _onSelectNotification(NotificationResponse details) {
+void _onSelectNotification(NotificationResponse details) async{
   // if (details.payload?.isNotEmpty ?? false) {
   //   final noti = NotiResModel.fromJson(jsonDecode(details.payload!) as Map<String, dynamic>);
   //   final type = NotificationType.fromName(noti.theLoai);
@@ -71,6 +76,25 @@ void _onSelectNotification(NotificationResponse details) {
   //   }
   //   Logger.d('PAYLOAD', noti);
   // }
+
+  if (details.payload?.isNotEmpty ?? false) {
+    final noti = NotiResModel.fromJson(
+        jsonDecode(details.payload!) as Map<String, dynamic>);
+    if(noti.noti_type == "notification"){
+      if(noti.type == "news"){
+        final model = await  getIt<NotificationViewModel>().getDetail(noti.id ?? "");
+        await AppNavigator.push(Routes.detailNewScreen,arguments: model);
+      }else{
+        if(noti.link?.isNotEmpty ?? false){
+          launchUrlString(
+            noti.link ?? '',
+            mode: LaunchMode.externalApplication,
+          );
+        }
+      }
+    }
+  }
+
 }
 
 const AndroidNotificationChannel channel = AndroidNotificationChannel(
@@ -124,15 +148,20 @@ void _showFlutterNotification(RemoteMessage message) {
 
 void _handleReceiveNotification(RemoteMessage message) async {
   final noti = NotiResModel.fromJson(message.data);
-  final type = NotificationType.fromName(noti.theLoai);
-  switch (type) {
-    case NotificationType.payment:
-      await getIt<ProfileViewModel>().getProfile();
-      break;
-    case NotificationType.order:
-      await getIt<DetailOrderViewModel>().getDetailOrder();
-      break;
-    default:
-      break;
+  if(noti.noti_type == "notification"){
+    final type = NotificationType.fromName(noti.theLoai);
+    switch (type) {
+      case NotificationType.payment:
+        await getIt<ProfileViewModel>().getProfile();
+        break;
+      case NotificationType.order:
+        await getIt<DetailOrderViewModel>().getDetailOrder();
+        break;
+      default:
+        break;
+    }
+  }else{
+
   }
+
 }

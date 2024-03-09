@@ -99,6 +99,12 @@ class NotificationViewModel extends BaseViewModel {
     await getListNotificationNews();
   }
 
+  Future<NotificationNewModel> getDetail(String id) async {
+    final model = await notiRepo.getDetailNoti(appData.tokenLogin, id);
+    await readNew(model);
+    return model;
+  }
+
   Future<void> readNew(NotificationNewModel model) async {
     model.isRead = true;
     countUnReadNew -= 1;
