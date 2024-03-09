@@ -1,9 +1,11 @@
 import 'package:app_shipper/src/features/cancel_order/cancel_order_view_model.dart';
 import 'package:app_shipper/src/features/cancel_order/cancel_screen.dart';
 import 'package:app_shipper/src/features/detail_new/detail_new_view.dart';
+import 'package:app_shipper/src/features/forget_password/change_pass/change_pass.dart';
 import 'package:app_shipper/src/features/info_user_drive/info_user_drive_screen.dart';
 import 'package:app_shipper/src/features/price_setting_ride_hailing/price_setting_ride_hailing_screen.dart';
 import 'package:app_shipper/src/features/price_setting_ride_hailing/price_setting_ride_hailing_view_model.dart';
+import 'package:app_shipper/src/features/register_success/register_success.dart';
 import 'package:app_shipper/src/features/statistic/statistic.dart';
 import 'package:app_shipper/src/features/statistic/statistic_view_model.dart';
 import 'package:app_shipper/src/models/list_notification_model/list_new_model.dart';
@@ -78,12 +80,24 @@ class AppNavigator {
             child: const LoginScreen(),
           ),
         );
+
       case Routes.registerScreen:
+        final arguments = settings.arguments as Map?;
         return _buildRoute(
           settings,
           ChangeNotifierProvider(
-            create: (context) => getIt<RegisterViewModel>(),
+            create: (context) => getIt<RegisterViewModel>()
+              ..setInviteCode(arguments?['codeInvite']),
             child: const RegisterScreen(),
+          ),
+        );
+      case Routes.registerSuccess:
+        final arguments = settings.arguments as Map?;
+        return _buildRoute(
+          settings,
+          RegisterSuccess(
+            title: arguments?['title'],
+            message: arguments?['message'],
           ),
         );
       case Routes.forgetPasswordScreen:
@@ -94,7 +108,15 @@ class AppNavigator {
             child: const ForgetPasswordScreen(),
           ),
         );
-
+      case Routes.changePassScreen:
+        final arguments = settings.arguments as ForgetPasswordViewModel?;
+        return _buildRoute(
+          settings,
+          ChangeNotifierProvider.value(
+            value: arguments,
+            child: const ChangePassScreen(),
+          ),
+        );
       case Routes.detailOrder:
         final arg = settings.arguments;
         final orderId =

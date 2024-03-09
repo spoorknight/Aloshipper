@@ -13,6 +13,8 @@ class MyScaffold extends StatelessWidget {
     this.bgColor,
     this.resizeToAvoidBottomInset,
     this.safeAreaBottom = true,
+    this.onWillPop,
+
   }) : super(key: key);
   final Widget? header;
   final Widget body;
@@ -22,6 +24,8 @@ class MyScaffold extends StatelessWidget {
   final bool? resizeToAvoidBottomInset;
   final Color? bgColor;
   final bool safeAreaBottom;
+  final Future<bool> Function()? onWillPop;
+
 
   @override
   Widget build(BuildContext context) {

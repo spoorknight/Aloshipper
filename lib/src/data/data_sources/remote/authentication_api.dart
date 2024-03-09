@@ -36,8 +36,41 @@ abstract class AuthenticationApi {
   @POST(ApiPath.fotgetPasswordMember)
   @MultiPart()
   Future<BaseModel> forgetPassword(
-    @Part(name: 'tokenlogin') String? tokenlogin,
-    @Part(name: 'device_token') String device_token,
     @Part(name: 'email') String email,
   );
+
+  @POST(ApiPath.sendSMS)
+  @MultiPart()
+  Future<BaseModel> sendSMS(
+      @Part(name: 'phone') String phone,
+      @Part(name: 'type') String type,
+      );
+
+  @POST(ApiPath.registerWithPhoneNumberv2)
+  @MultiPart()
+  Future<BaseModel> registerWithPhoneNumber(
+      @Part(name: 'phone_number') String phoneNumber,
+      @Part(name: 'password') String password,
+      @Part(name: 'confirm_password') String confirmPassword,
+      @Part(name: 'code') String code,
+      @Part(name: 'full_name') String fullName,
+      @Part(name: 'ref_id') String? codeInvite,
+      );
+
+  @POST(ApiPath.checkValidOTP)
+  @MultiPart()
+  Future<BaseModel> checkValidOTP(
+      @Part(name: 'phone_number') String phone,
+      @Part(name: 'code') String code,
+      @Part(name: 'type') String type,
+      );
+
+  @POST(ApiPath.forgotPasswordWithOTP)
+  @MultiPart()
+  Future<BaseModel> forgotPasswordWithOTP(
+      @Part(name: 'phone_number') String phone,
+      @Part(name: 'password') String password,
+      @Part(name: 'code') String code,
+      @Part(name: 'confirm_password') String confirmPassword,
+      );
 }

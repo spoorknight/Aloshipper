@@ -127,26 +127,11 @@ class _AuthenticationApi implements AuthenticationApi {
   }
 
   @override
-  Future<BaseModel> forgetPassword(
-    tokenlogin,
-    device_token,
-    email,
-  ) async {
+  Future<BaseModel> forgetPassword(email) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = FormData();
-    if (tokenlogin != null) {
-      _data.fields.add(MapEntry(
-        'tokenlogin',
-        tokenlogin,
-      ));
-    }
-    _data.fields.add(MapEntry(
-      'device_token',
-      device_token,
-    ));
     _data.fields.add(MapEntry(
       'email',
       email,
@@ -161,6 +146,184 @@ class _AuthenticationApi implements AuthenticationApi {
             .compose(
               _dio.options,
               'fotgetPasswordMember',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = BaseModel.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<BaseModel> sendSMS(
+    phone,
+    type,
+  ) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = FormData();
+    _data.fields.add(MapEntry(
+      'phone',
+      phone,
+    ));
+    _data.fields.add(MapEntry(
+      'type',
+      type,
+    ));
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<BaseModel>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+      contentType: 'multipart/form-data',
+    )
+            .compose(
+              _dio.options,
+              'sendSMS',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = BaseModel.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<BaseModel> registerWithPhoneNumber(
+    phoneNumber,
+    password,
+    confirmPassword,
+    code,
+    fullName,
+    codeInvite,
+  ) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
+    final _data = FormData();
+    _data.fields.add(MapEntry(
+      'phone_number',
+      phoneNumber,
+    ));
+    _data.fields.add(MapEntry(
+      'password',
+      password,
+    ));
+    _data.fields.add(MapEntry(
+      'confirm_password',
+      confirmPassword,
+    ));
+    _data.fields.add(MapEntry(
+      'code',
+      code,
+    ));
+    _data.fields.add(MapEntry(
+      'full_name',
+      fullName,
+    ));
+    if (codeInvite != null) {
+      _data.fields.add(MapEntry(
+        'ref_id',
+        codeInvite,
+      ));
+    }
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<BaseModel>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+      contentType: 'multipart/form-data',
+    )
+            .compose(
+              _dio.options,
+              'registerWithPhoneNumberv2',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = BaseModel.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<BaseModel> checkValidOTP(
+    phone,
+    code,
+    type,
+  ) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = FormData();
+    _data.fields.add(MapEntry(
+      'phone_number',
+      phone,
+    ));
+    _data.fields.add(MapEntry(
+      'code',
+      code,
+    ));
+    _data.fields.add(MapEntry(
+      'type',
+      type,
+    ));
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<BaseModel>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+      contentType: 'multipart/form-data',
+    )
+            .compose(
+              _dio.options,
+              'checkValidOTP',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = BaseModel.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<BaseModel> forgotPasswordWithOTP(
+    phone,
+    password,
+    code,
+    confirmPassword,
+  ) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = FormData();
+    _data.fields.add(MapEntry(
+      'phone_number',
+      phone,
+    ));
+    _data.fields.add(MapEntry(
+      'password',
+      password,
+    ));
+    _data.fields.add(MapEntry(
+      'code',
+      code,
+    ));
+    _data.fields.add(MapEntry(
+      'confirm_password',
+      confirmPassword,
+    ));
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<BaseModel>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+      contentType: 'multipart/form-data',
+    )
+            .compose(
+              _dio.options,
+              'forgotPasswordWithOTP',
               queryParameters: queryParameters,
               data: _data,
             )

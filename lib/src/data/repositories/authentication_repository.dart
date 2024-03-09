@@ -17,8 +17,15 @@ abstract class AuthenticationRepository {
   );
 
   Future<BaseModel> forgetPassword(
-    String? tokenlogin,
-    String device_token,
     String email,
   );
+
+  Future<BaseModel> checkValidOTP(String phone, String code, String type);
+
+  Future<BaseModel> forgotPasswordWithOTP(String phone, String password, String confirmPassword, String code);
+
+  Future<BaseModel> sendSMS(String phone, String type);
+
+  Future<BaseModel> registerWithPhoneNumber(String phoneNumber, String password,
+      String confirmPassword, String code, String fullName, String? codeInvite);
 }

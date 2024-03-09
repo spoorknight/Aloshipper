@@ -26,6 +26,7 @@ extension ColorExtension on TextStyle {
   TextStyle get linkBlue => copyWith(color: Palette.linkBlue);
   TextStyle get linkBlue3492E7 => copyWith(color: Palette.linkBlue3492E7);
   TextStyle get nuatral => copyWith(color: Palette.nuatral);
+  TextStyle get greyA9A9A9 => copyWith(color: Palette.greyA9A9A9);
 }
 
 extension MyFontWeight on TextStyle {

@@ -3,6 +3,10 @@ class Routes {
   static const String loginScreen = 'loginScreen';
   static const String registerScreen = 'registerScreen';
   static const String forgetPasswordScreen = 'forgetPasswordScreen';
+  static const String changePassScreen = 'ChangePassScreen';
+  static const String otpScreen = 'OTPScreen';
+  static const String otpResetPassScreen = 'OTPResetPassScreen';
+  static const String registerSuccess = 'RegisterSuccess';
   static const String mainScreen = 'mainScreen';
   static const String detailOrder = 'detailDriverOrder';
   static const String cancelOrderScreen = 'CancelOrderScreen';

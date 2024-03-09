@@ -11,6 +11,14 @@ class Validator {
     return RegExp(emailRegExpString, caseSensitive: false).hasMatch(email);
   }
 
+  static bool isPassword(String password) {
+    final RegExp regex = RegExp(
+      r'^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9@#]).{8,}$',
+    );
+
+    return regex.hasMatch(password);
+  }
+
   static bool isURL(String url) {
     const regexUrl =
         r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?";

@@ -17,6 +17,7 @@ import '../../navigator/routes.dart';
 import '../../network/api_path.dart';
 import '../../network/base_dio.dart';
 import '../../shared/show_toast.dart';
+import '../../utils/app_enum.dart';
 import '../../utils/helpers/logger.dart';
 
 enum ImageType { matTruocCCCD, matSauCCCD, matTruocGPLX, matSauGPLX, chanDung }
@@ -42,6 +43,8 @@ class RegisterViewModel extends BaseViewModel {
   final TextEditingController phoneNumberController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController licensePlatesCtl = TextEditingController();
+  final TextEditingController codeInventController = TextEditingController();
+
   bool isAgreeRules = false;
   bool isActiveButton = false;
   List<Tuple2<String, String>> driverType = const [
@@ -88,6 +91,10 @@ class RegisterViewModel extends BaseViewModel {
         type: ImageType.chanDung,
       ),
     ];
+  }
+
+  setInviteCode(String? data) {
+    codeInventController.text = data ?? '';
   }
 
   void selectType(String v) {
@@ -157,58 +164,89 @@ class RegisterViewModel extends BaseViewModel {
     return base64Image;
   }
 
+  // void register() async {
+  //   EasyLoading.show();
+  //   try {
+  //     final dio = await BaseDio.setup();
+  //     List<String?> listBase64Image = [];
+  //     for (var e in listImageModel) {
+  //       if (e.image != null) {
+  //         listBase64Image.add(await convertBase64Image(e.image!));
+  //       }
+  //     }
+  //     Logger.d('LIST IMAGE', listBase64Image.length);
+  //     final data = {
+  //       'tokenlogin': appData.tokenLogin,
+  //       'device_token': appData.firebaseToken,
+  //       'fullname': fullnameController.text,
+  //       'username': usernameController.text,
+  //       'password': passwordController.text,
+  //       'password2': password2Controller.text,
+  //       'phone_number': phoneNumberController.text,
+  //       'address': addressSelected?.fullAddr ?? '',
+  //       'country_id': addressSelected?.province?.id,
+  //       'state_id': addressSelected?.district?.id,
+  //       'city_id': addressSelected?.commune?.id,
+  //       'email': emailController.text,
+  //       'loaixe': selectedType,
+  //       'biensoxe': licensePlatesCtl.text,
+  //       'giayphep[0]': listBase64Image[0],
+  //       'giayphep[1]': listBase64Image[1],
+  //       'giayphep[2]': listBase64Image[2],
+  //       'giayphep[3]': listBase64Image[3],
+  //       'giayphep[4]': listBase64Image[4],
+  //       'sochongoi': selectedNumberSeat,
+  //       "codeInvite": codeInventController.text.trim(),
+  //
+  //     };
+  //     BaseModel bm = const BaseModel();
+  //     final res = await dio.post(ApiPath.requestOpenShipper,
+  //         data: FormData.fromMap(data));
+  //     bm = BaseModel.fromJson(res.data);
+  //     if (bm.status == true) {
+  //       EasyLoading.dismiss();
+  //       ShowToast.success(bm.mess ?? bm.item);
+  //       AppNavigator.pushAndRemoveUntil(Routes.loginScreen);
+  //     } else {
+  //       EasyLoading.dismiss();
+  //       ShowToast.error(bm.mess ?? bm.item);
+  //     }
+  //   } catch (e) {
+  //
+  //     Logger.d('REGISTER >>>', e);
+  //   } finally {
+  //     EasyLoading.dismiss();
+  //     notifyListeners();
+  //   }
+  // }
+
   void register() async {
-    EasyLoading.show();
     try {
-      final dio = await BaseDio.setup();
-      List<String?> listBase64Image = [];
-      for (var e in listImageModel) {
-        if (e.image != null) {
-          listBase64Image.add(await convertBase64Image(e.image!));
-        }
-      }
-      Logger.d('LIST IMAGE', listBase64Image.length);
-      final data = {
-        'tokenlogin': appData.tokenLogin,
-        'device_token': appData.firebaseToken,
-        'fullname': fullnameController.text,
-        'username': usernameController.text,
-        'password': passwordController.text,
-        'password2': password2Controller.text,
-        'phone_number': phoneNumberController.text,
-        'address': addressSelected?.fullAddr ?? '',
-        'country_id': addressSelected?.province?.id,
-        'state_id': addressSelected?.district?.id,
-        'city_id': addressSelected?.commune?.id,
-        'email': emailController.text,
-        'loaixe': selectedType,
-        'biensoxe': licensePlatesCtl.text,
-        'giayphep[0]': listBase64Image[0],
-        'giayphep[1]': listBase64Image[1],
-        'giayphep[2]': listBase64Image[2],
-        'giayphep[3]': listBase64Image[3],
-        'giayphep[4]': listBase64Image[4],
-        'sochongoi': selectedNumberSeat,
-      };
-      BaseModel bm = const BaseModel();
-      final res = await dio.post(ApiPath.requestOpenShipper,
-          data: FormData.fromMap(data));
-      bm = BaseModel.fromJson(res.data);
-      if (bm.status == true) {
-        EasyLoading.dismiss();
-        ShowToast.success(bm.mess ?? bm.item);
-        AppNavigator.pushAndRemoveUntil(Routes.loginScreen);
+      EasyLoading.show();
+      BaseModel res = await authRepo.sendSMS(
+        phoneNumberController.text.trim(),
+        OTPType.register.name,
+      );
+      EasyLoading.dismiss();
+      if (res.checkStatusSuccess) {
+        AppNavigator.push(Routes.otpScreen, arguments: {
+          "phoneNumber": phoneNumberController.text.trim(),
+          "password": passwordController.text.trim(),
+          "passwordConfirm": password2Controller.text.trim(),
+          "fullName": fullnameController.text.trim(),
+          "codeInvite": codeInventController.text.trim(),
+        });
       } else {
-        EasyLoading.dismiss();
-        ShowToast.error(bm.mess ?? bm.item);
+        ShowToast.error(res.mess ?? "Có lỗi, vui lòng thử lại");
       }
     } catch (e) {
-      Logger.d('REGISTER >>>', e);
+      Logger.d('send otp error', e.toString());
+      ShowToast.error("Có lỗi, vui lòng thử lại");
     } finally {
       EasyLoading.dismiss();
-      notifyListeners();
     }
   }
+
 }
 
 class ImageModel {

@@ -9,6 +9,10 @@ class ApiPath {
   static const String loginMember = 'LoginShipper';
   static const String requestOpenShipper = 'RequestOpenShipper';
   static const String fotgetPasswordMember = 'fotgetPasswordMember';
+  static const String sendSMS = 'sendSMS';
+  static const String registerWithPhoneNumberv2 = 'registerWithPhoneNumberv2';
+  static const String checkValidOTP = 'checkValidOTP';
+  static const String forgotPasswordWithOTP = 'forgotPasswordWithOTP';
 
   //* Tài khoản
   static const String getProfileShopApi = 'get_ProfileShopApi';

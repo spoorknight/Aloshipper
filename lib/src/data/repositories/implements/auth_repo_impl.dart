@@ -29,8 +29,29 @@ class AuthenRepoImpl implements AuthenticationRepository {
   }
 
   @override
-  Future<BaseModel> forgetPassword(
-      String? tokenlogin, String device_token, String email) {
-    return authenticationApi.forgetPassword(tokenlogin, device_token, email);
+  Future<BaseModel> forgetPassword(String email) {
+    return authenticationApi.forgetPassword(email);
+  }
+
+  @override
+  Future<BaseModel> registerWithPhoneNumber(String phoneNumber, String password,
+      String confirmPassword, String code, String fullName, String? codeInvite) async {
+    return authenticationApi.registerWithPhoneNumber(
+        phoneNumber, password, confirmPassword, code, fullName, codeInvite);
+  }
+
+  @override
+  Future<BaseModel> sendSMS(String phone, String type) async {
+    return authenticationApi.sendSMS(phone, type);
+  }
+
+  @override
+  Future<BaseModel> checkValidOTP(String phone, String code, String type) {
+    return authenticationApi.checkValidOTP(phone, code, type);
+  }
+
+  @override
+  Future<BaseModel> forgotPasswordWithOTP(String phone, String password, String confirmPassword, String code) {
+    return authenticationApi.forgotPasswordWithOTP(phone, password, code, confirmPassword);
   }
 }

@@ -121,3 +121,7 @@ enum OrderStatusEnum {
   shipper_confirm,
   wait_shipper,
 }
+
+enum OTPType { register, forgot_password }
+enum InputTextType { input, button }
+

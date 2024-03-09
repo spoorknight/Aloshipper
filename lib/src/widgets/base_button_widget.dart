@@ -13,6 +13,8 @@ class BaseButtonWidget extends StatefulWidget {
     this.decoration,
     this.icon,
     this.padding,
+    this.mainAxisSize = MainAxisSize.max,
+    this.mainAxisAlignment = MainAxisAlignment.center,
   });
 
   final Widget child;
@@ -21,6 +23,8 @@ class BaseButtonWidget extends StatefulWidget {
   final Decoration? decoration;
   final Widget? icon;
   final EdgeInsetsGeometry? padding;
+  final MainAxisSize mainAxisSize;
+  final MainAxisAlignment mainAxisAlignment;
 
   @override
   State<BaseButtonWidget> createState() => _BaseButtonWidgetState();
@@ -44,7 +48,8 @@ class _BaseButtonWidgetState extends State<BaseButtonWidget> {
           padding: widget.padding,
           decoration: widget.decoration,
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: widget.mainAxisAlignment,
+            mainAxisSize: widget.mainAxisSize,
             children: [
               if (widget.icon != null) ...[
                 widget.icon!,

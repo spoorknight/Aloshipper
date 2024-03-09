@@ -103,4 +103,17 @@ class AppTheme {
           ),
         ),
       );
+
+  static InputDecorationTheme baseTextFormField() => InputDecorationTheme(
+    labelStyle: AppFont.t.green,
+    hintStyle: AppFont.t.hint,
+    focusColor: Palette.green,
+    border: InputBorder.none,
+    focusedErrorBorder: InputBorder.none,
+    errorBorder: InputBorder.none,
+    disabledBorder: InputBorder.none,
+    focusedBorder: InputBorder.none,
+    contentPadding:
+    const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+  );
 }

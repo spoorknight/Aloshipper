@@ -9,6 +9,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../configs/config.dart';
 import '../utils/extensions/extensions.dart';
+import '../utils/utils.dart';
 import '../widgets/base_button_widget.dart';
 import '../widgets/measure_size_widget.dart';
 import 'button.dart';
@@ -436,6 +437,63 @@ class DialogLogin extends StatelessWidget {
           ),
           BoxConst.s8
         ],
+      ),
+    );
+  }
+}
+
+
+class DialogWarningExceedTime extends StatelessWidget {
+  final String desc;
+  final String? phoneNum;
+
+  const DialogWarningExceedTime({
+    Key? key,
+    required this.desc,
+    this.phoneNum,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      elevation: 5,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(3.r))),
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Bạn đã thử quá nhiều mã OTP!',
+              style: AppFont.t.s(16).w500.black,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 8),
+              child: Text(
+                desc,
+                style: AppFont.t.s(13).w400.black,
+              ),
+            ),
+            BoxConst.s24,
+            Row(
+              children: [
+                Expanded(
+                  child: MyButton(
+                    title: 'Gọi CSKH',
+                    borderRadius: 3.r,
+                    color: Palette.primary.withOpacity(0.2),
+                    titleStyle: AppFont.t.s(13).w700.primary,
+                    action: () async {
+                      await Utils().launchPhone(phoneNum ?? '');
+                    },
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

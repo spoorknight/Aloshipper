@@ -196,6 +196,10 @@ class $AssetsSvgsGen {
   /// File path: assets/svgs/ic_ship_to.svg
   SvgGenImage get icShipTo => const SvgGenImage('assets/svgs/ic_ship_to.svg');
 
+  /// File path: assets/svgs/img_success.svg
+  SvgGenImage get imgSuccess =>
+      const SvgGenImage('assets/svgs/img_success.svg');
+
   /// File path: assets/svgs/king_sc.svg
   SvgGenImage get kingSc => const SvgGenImage('assets/svgs/king_sc.svg');
 
@@ -249,6 +253,10 @@ class $AssetsSvgsGen {
   SvgGenImage get transferBank =>
       const SvgGenImage('assets/svgs/transfer_bank.svg');
 
+  /// File path: assets/svgs/waiting_login.svg
+  SvgGenImage get waitingLogin =>
+      const SvgGenImage('assets/svgs/waiting_login.svg');
+
   /// File path: assets/svgs/wallet.svg
   SvgGenImage get wallet => const SvgGenImage('assets/svgs/wallet.svg');
 
@@ -285,6 +293,7 @@ class $AssetsSvgsGen {
         icFilter,
         icShipFrom,
         icShipTo,
+        imgSuccess,
         kingSc,
         linkIos,
         multiCreditCard,
@@ -299,6 +308,7 @@ class $AssetsSvgsGen {
         successDrive,
         theater,
         transferBank,
+        waitingLogin,
         wallet,
         walletAddOutline,
         walletShare

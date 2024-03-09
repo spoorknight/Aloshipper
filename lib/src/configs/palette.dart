@@ -9,6 +9,7 @@ class Palette {
   static const Color black181818 = Color(0xFF181818);
   static const Color black54 = Colors.black54;
   static const Color transparent = Colors.transparent;
+  static const Color greyA9A9A9 = Color(0xffA9A9A9);
   static const Color background = Color(0xFFFFFFFF);
   static const Color success = Color(0xff1ed351);
   static const Color green00A64F = Color(0xff00A64F);
