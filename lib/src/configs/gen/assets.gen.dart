@@ -186,6 +186,9 @@ class $AssetsSvgsGen {
   /// File path: assets/svgs/hourglass.svg
   SvgGenImage get hourglass => const SvgGenImage('assets/svgs/hourglass.svg');
 
+  /// File path: assets/svgs/ic_camera.svg
+  SvgGenImage get icCamera => const SvgGenImage('assets/svgs/ic_camera.svg');
+
   /// File path: assets/svgs/ic_filter.svg
   SvgGenImage get icFilter => const SvgGenImage('assets/svgs/ic_filter.svg');
 
@@ -290,6 +293,7 @@ class $AssetsSvgsGen {
         direct,
         giftOutline,
         hourglass,
+        icCamera,
         icFilter,
         icShipFrom,
         icShipTo,

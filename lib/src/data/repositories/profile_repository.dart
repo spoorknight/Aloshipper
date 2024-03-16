@@ -2,6 +2,9 @@ import 'package:app_shipper/src/features/price_setting_ride_hailing/price_settin
 import 'package:app_shipper/src/models/list_review_shipper_model/list_review_shipper_model.dart';
 import 'package:app_shipper/src/models/price_setting_ride_hailing_model/ride_hailing_setting_model.dart';
 import 'package:app_shipper/src/models/user_active_info_model.dart';
+import 'package:app_shipper/src/models/user_info/user_info_res.dart';
+import 'package:app_shipper/src/models/vehicle_model/vehicle_model_by_brand.dart';
+import 'package:app_shipper/src/models/vehicle_model/vehilce_brand_model.dart';
 
 import '../../models/bank_info.dart';
 import '../../models/bank_model.dart';
@@ -24,11 +27,17 @@ abstract class ProfileRepository {
 
   Future<UserBankAccountModel> getUserBanksInfo(String token);
 
+  Future<UserInfoRes> getUserInfo();
+
   Future<RideHailingSettingModel> getRideHailingSetting(String token);
   Future<BaseModel> createOrUpdate(String token, String bank_id,
       String user_bank_name, String user_bank_number);
 
   Future<ResponseBankInfoModel> getBanks();
+
+  Future<VehilceBrandResponse> getVehicleBrands();
+
+  Future<VehicleModelByBrand> getVehicleModelByBrand(String brand_id);
 
   Future<BaseModel> updatePriceRideHailing(String token,String setting);
 

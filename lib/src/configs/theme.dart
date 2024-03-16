@@ -19,7 +19,7 @@ class AppTheme {
 
   static InputDecorationTheme textFormFieldNonBorder([InputBorder? border]) =>
       InputDecorationTheme(
-        labelStyle: AppFont.t.green,
+        labelStyle: AppFont.t.black,
         contentPadding:
             const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
         hintStyle: AppFont.t.hint,

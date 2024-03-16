@@ -23,7 +23,6 @@ class UpdateInfoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<UpdateInfoViewModel>();
-
     return MyScaffold(
       appBar: const MyAppBar(title: 'Cập nhật tài khoản'),
       body: SingleChildScrollView(

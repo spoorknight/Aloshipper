@@ -20,7 +20,7 @@ import '../../shared/show_toast.dart';
 import '../../utils/app_enum.dart';
 import '../../utils/helpers/logger.dart';
 
-enum ImageType { matTruocCCCD, matSauCCCD, matTruocGPLX, matSauGPLX, chanDung }
+enum ImageType { matTruocCCCD, matSauCCCD, matTruocGPLX, matSauGPLX, chanDung, matSauCavet, matTruocCavet, phiaTruocXe,benPhaiXe,benTraiXe,bienSoXe }
 
 class RegisterViewModel extends BaseViewModel {
   final AuthenticationRepository authRepo;

@@ -19,7 +19,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.automaticallyImplyLeading = true,
     this.centerTitle,
     this.titleStyle,
-    this.backgroundColor = Palette.transparent,
+    this.backgroundColor = Palette.white,
     this.leading,
     this.titleWidget,
   })  : preferredSize = const Size.fromHeight(kToolbarHeight),
@@ -33,7 +33,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       automaticallyImplyLeading: automaticallyImplyLeading,
       shape: const Border(bottom: BorderSide(color: Palette.grey, width: 1)),
-      foregroundColor: Palette.red,
+      foregroundColor: Palette.black,
       centerTitle: centerTitle == true,
       elevation: 0,
       backgroundColor: backgroundColor,

@@ -77,6 +77,34 @@ class _ProfileApi implements ProfileApi {
   }
 
   @override
+  Future<UserInfoRes> getUserInfo(tokenlogin) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = FormData();
+    _data.fields.add(MapEntry(
+      'token',
+      tokenlogin,
+    ));
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<UserInfoRes>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+      contentType: 'multipart/form-data',
+    )
+            .compose(
+              _dio.options,
+              'getUserInfo',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = UserInfoRes.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
   Future<BaseModel> updateStatusOrderShipper(
     tokenlogin,
     batGoiXe,
@@ -922,6 +950,52 @@ class _ProfileApi implements ProfileApi {
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = ResponseBankInfoModel.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<VehilceBrandResponse> getVehicleBrands() async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<VehilceBrandResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'getVehicleBrands',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = VehilceBrandResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<VehicleModelByBrand> getVehicleModelByBrand(brand_id) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'brand_id': brand_id};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<VehicleModelByBrand>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'getVehicleModelsByBrandId',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = VehicleModelByBrand.fromJson(_result.data!);
     return value;
   }
 

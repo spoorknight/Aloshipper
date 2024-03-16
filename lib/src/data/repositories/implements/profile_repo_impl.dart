@@ -5,6 +5,9 @@ import 'package:app_shipper/src/models/list_review_shipper_model/list_review_shi
 import 'package:app_shipper/src/models/list_service_model.dart';
 import 'package:app_shipper/src/models/price_setting_ride_hailing_model/ride_hailing_setting_model.dart';
 import 'package:app_shipper/src/models/user_active_info_model.dart';
+import 'package:app_shipper/src/models/user_info/user_info_res.dart';
+import 'package:app_shipper/src/models/vehicle_model/vehicle_model_by_brand.dart';
+import 'package:app_shipper/src/models/vehicle_model/vehilce_brand_model.dart';
 import 'package:dio/dio.dart';
 
 import '../../../di/injection/injection.dart';
@@ -161,6 +164,16 @@ class ProfileRepoImpl implements ProfileRepository {
   }
 
   @override
+  Future<VehilceBrandResponse> getVehicleBrands() {
+    return profileApi.getVehicleBrands();
+  }
+
+  @override
+  Future<VehicleModelByBrand> getVehicleModelByBrand(String brand_id) {
+    return profileApi.getVehicleModelByBrand(brand_id);
+  }
+
+  @override
   Future<BaseModel> updatePhiKmDauTien(
       String tokenlogin, String device_token, String phiKmDau) {
     return profileApi.updatePhiKmDauTien(tokenlogin, device_token, phiKmDau);
@@ -169,6 +182,11 @@ class ProfileRepoImpl implements ProfileRepository {
   @override
   Future<UserInfoActiveModel> getActivityShipperInfo() {
     return profileApi.getUserInfoActive(appData.userId);
+  }
+
+  @override
+  Future<UserInfoRes> getUserInfo() {
+    return profileApi.getUserInfo(appData.tokenLogin);
   }
 
   @override

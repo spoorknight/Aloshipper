@@ -2,6 +2,10 @@ import 'package:app_shipper/src/models/list_review_shipper_model/list_review_shi
 import 'package:app_shipper/src/models/list_service_model.dart';
 import 'package:app_shipper/src/models/price_setting_ride_hailing_model/ride_hailing_setting_model.dart';
 import 'package:app_shipper/src/models/user_active_info_model.dart';
+import 'package:app_shipper/src/models/user_info/user_info_res.dart';
+import 'package:app_shipper/src/models/vehicle_model/vehicle_model_by_brand.dart';
+import 'package:app_shipper/src/models/vehicle_model/vehilce_brand_model.dart';
+import 'package:app_shipper/src/utils/app_enum.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/http.dart';
 
@@ -30,6 +34,12 @@ abstract class ProfileApi {
   Future<UserInfoActiveModel> getUserInfoActive(
     @Query('shipper_id') String shipperId,
   );
+
+  @POST(ApiPath.getUserInfo)
+  @MultiPart()
+  Future<UserInfoRes> getUserInfo(
+      @Part(name: 'token') String tokenlogin,
+      );
 
   @POST(ApiPath.updateStatusOrderShipper)
   @MultiPart()
@@ -194,6 +204,14 @@ abstract class ProfileApi {
 
   @GET(ApiPath.getBanks)
   Future<ResponseBankInfoModel> getBanks();
+
+  @GET(ApiPath.getVehicleBrands)
+  Future<VehilceBrandResponse> getVehicleBrands();
+
+  @GET(ApiPath.getVehicleModelsByBrandId)
+  Future<VehicleModelByBrand> getVehicleModelByBrand(
+      @Query('brand_id') String brand_id,
+      );
 
   @POST(ApiPath.createOrUpdate)
   @MultiPart()

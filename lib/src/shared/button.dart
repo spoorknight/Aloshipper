@@ -99,6 +99,7 @@ class MyTextButton extends StatelessWidget {
     this.alignment,
     this.color,
     this.width,
+    this.height,
     this.style,
   }) : super(key: key);
   final String text;
@@ -106,12 +107,14 @@ class MyTextButton extends StatelessWidget {
   final Alignment? alignment;
   final Color? color;
   final double? width;
+  final double? height;
   final TextStyle? style;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: width,
+      height: height,
       child: TextButton(
         style: ButtonStyle(
           alignment: alignment ?? Alignment.center,

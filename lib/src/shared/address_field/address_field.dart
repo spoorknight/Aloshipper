@@ -16,13 +16,15 @@ import '../text_form_field.dart';
 class AddressFiled extends StatefulWidget {
   final String? title;
   final String? hintText;
+   bool isVerify = false;
   final AddressSelected? addressSelected;
   final VoidCallback? onComplete;
   final ProfileRepository profileRepository;
-  const AddressFiled({
+   AddressFiled({
     Key? key,
     this.title,
     this.hintText,
+    this.isVerify = false,
     this.addressSelected,
     this.onComplete,
     required this.profileRepository,
@@ -166,7 +168,24 @@ class _AddressFiledState extends State<AddressFiled> {
   @override
   Widget build(BuildContext context) {
     // final viewModel = context.watch<AddressFieldViewModel>();
-    return CustomTextFormField(
+    return widget.isVerify ?
+    CustomTextFormFieldVerify(
+      readOnly: true,
+      title: widget.title,
+      hintText: widget.hintText,
+      suffixIcon: const Icon(Icons.navigate_next,color: Palette.black),
+      controller: finalAddrCtl,
+      onTap: () async {
+        await getTinhTPList();
+        await showDialog(
+          barrierDismissible: false,
+          context: context,
+          builder: (dialogContext) => _buildDialog(dialogContext),
+        );
+        widget.onComplete?.call();
+      },
+    )
+        : CustomTextFormField(
       readOnly: true,
       title: widget.title,
       hintText: widget.hintText,

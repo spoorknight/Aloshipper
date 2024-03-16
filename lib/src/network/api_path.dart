@@ -17,8 +17,10 @@ class ApiPath {
   //* Tài khoản
   static const String getProfileShopApi = 'get_ProfileShopApi';
   static const String getUserInfoActive = 'getAvtivityShipperInfo';
+  static const String getUserInfo = 'getUserInfo';
   static const String updateProfileShipper = 'UpdateProfileShipper';
   static const String updateTaiKhoanShipper = 'UpdateTaiKhoanShipper';
+  static const String updateShipperInfo = 'updateShipperInfo';
   static const String getInfoTaiKhoanHopTac = 'getInfoTaiKhoanHopTac';
   static const String getListHoaHongSanPham = 'getListHoaHongSanPham';
   static const String getListSanPhamDangChiecKhau =
@@ -45,6 +47,11 @@ class ApiPath {
   static const String getTinhTPList = 'getTinhTPList';
   static const String getQuanHuyenList = 'getQuanHuyenList';
   static const String getPhuongXaList = 'getPhuongXaList';
+
+  //* Config
+  static const String getVehicleBrands = 'getVehicleBrands';
+  static const String getVehicleModelsByBrandId = 'getVehicleModelsByBrandId';
+
 
   //* Thông báo
   static const String getListThongBao = 'getListThongBao';

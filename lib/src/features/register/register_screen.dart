@@ -33,7 +33,7 @@ class RegisterScreen extends StatelessWidget {
     final viewModel = context.watch<RegisterViewModel>();
     return MyScaffold(
       bgColor: Palette.newLightGrey,
-      appBar: const MyAppBar(title: 'Đăng ký'),
+      appBar: const MyAppBar(title: 'Đăng ký',centerTitle: true),
       body: SingleChildScrollView(
         // child: Column(
         //   children: [

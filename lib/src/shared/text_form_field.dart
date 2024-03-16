@@ -190,3 +190,141 @@ class UppercaseTextInputFormatter extends TextInputFormatter {
     );
   }
 }
+
+
+class CustomTextFormFieldVerify extends StatefulWidget {
+  const CustomTextFormFieldVerify({
+    Key? key,
+    this.title,
+    this.hintText,
+    this.inputType,
+    this.controller,
+    this.maxLength,
+    this.onSubmitted,
+    this.initialValue,
+    this.onSaved,
+    this.autovalidateMode = AutovalidateMode.onUserInteraction,
+    this.onChanged,
+    this.errorText,
+    this.radius = 8,
+    this.centerTitle = false,
+    this.prefixIcon,
+    this.width,
+    this.height,
+    this.readOnly = false,
+    this.onTap,
+    this.maxLines = 1,
+    this.contentPadding,
+    this.suffixIcon,
+    this.textAlign = TextAlign.start,
+    this.inputFormatters,
+    this.validator,
+    this.isRequired = true,
+    this.focusNode,
+    this.decoration,
+    this.border,
+    this.textAlignVertical,
+  }) : super(key: key);
+
+  final String? title;
+  final String? hintText;
+  final TextInputType? inputType;
+  final TextEditingController? controller;
+  final int? maxLength;
+  final Function? onSubmitted;
+  final String? initialValue;
+  final FormFieldSetter<String>? onSaved;
+  final AutovalidateMode? autovalidateMode;
+  final Function(String)? onChanged;
+  final String? errorText;
+  final double radius;
+  final Widget? prefixIcon;
+  final Widget? suffixIcon;
+  final bool? centerTitle;
+  final double? width;
+  final double? height;
+  final bool readOnly;
+  final bool isRequired;
+  final VoidCallback? onTap;
+  final int maxLines;
+  final EdgeInsetsGeometry? contentPadding;
+  final TextAlign textAlign;
+  final List<TextInputFormatter>? inputFormatters;
+  final String? Function(String?)? validator;
+  final FocusNode? focusNode;
+  final InputDecoration? decoration;
+  final InputBorder? border;
+  final TextAlignVertical? textAlignVertical;
+
+  @override
+  State<CustomTextFormFieldVerify> createState() => _CustomTextFormFieldVerifyState();
+}
+
+class _CustomTextFormFieldVerifyState extends State<CustomTextFormFieldVerify> {
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        SizedBox(
+          width: widget.width ?? double.infinity,
+          height: 69,
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Text(widget.title ?? "",style: AppFont.t,),
+                  Text(" *",style: AppFont.t.red,)
+                ],
+              ),
+              TextFormField(
+                textAlign: widget.textAlign,
+                maxLines: widget.maxLines,
+                style: AppFont.t.black.w500,
+                initialValue: widget.initialValue,
+                key: widget.key,
+                keyboardType: widget.inputType,
+                obscuringCharacter: '*',
+                autocorrect: false,
+                readOnly: widget.readOnly,
+                maxLength: widget.maxLength,
+                onChanged: widget.onChanged,
+                onTap: widget.onTap,
+                textAlignVertical: widget.textAlignVertical,
+                decoration: widget.decoration ??
+                    const InputDecoration()
+                        .applyDefaults( AppTheme.textFormFieldNonBorder(widget.border)
+                      )
+                        .copyWith(
+                      counterText: "",
+                      floatingLabelAlignment: widget.centerTitle == true
+                          ? FloatingLabelAlignment.center
+                          : null,
+                      // labelText: widget.title,
+                      floatingLabelBehavior: FloatingLabelBehavior.always,
+                      hintText: widget.hintText,
+                      prefixIcon: widget.prefixIcon,
+                      contentPadding: widget.contentPadding,
+                      suffixIcon: widget.suffixIcon,
+                    ),
+                onSaved: (_) => widget.onSaved,
+                controller: widget.controller,
+                autovalidateMode: widget.autovalidateMode,
+                inputFormatters: widget.inputFormatters,
+                validator: widget.validator,
+                focusNode: widget.focusNode,
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
