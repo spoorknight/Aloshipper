@@ -40,6 +40,10 @@ void main() async {
         MultiProvider(
           providers: [
             ChangeNotifierProvider(
+              create: (context) => contactViewModel,
+              child: const SizedBox(),
+            ),
+            ChangeNotifierProvider(
               create: (BuildContext context) => getIt<AppViewModel>(),
             ),
           ],

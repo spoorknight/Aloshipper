@@ -56,6 +56,10 @@ class $AssetsImagesGen {
   /// File path: assets/images/logo.png
   AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');
 
+  /// File path: assets/images/marker_icon.png
+  AssetGenImage get markerIcon =>
+      const AssetGenImage('assets/images/marker_icon.png');
+
   /// File path: assets/images/milk_tea.jpg
   AssetGenImage get milkTea =>
       const AssetGenImage('assets/images/milk_tea.jpg');
@@ -67,6 +71,9 @@ class $AssetsImagesGen {
   /// File path: assets/images/playstore.png
   AssetGenImage get playstore =>
       const AssetGenImage('assets/images/playstore.png');
+
+  /// File path: assets/images/point_3.png
+  AssetGenImage get point3 => const AssetGenImage('assets/images/point_3.png');
 
   /// File path: assets/images/status_motobike.png
   AssetGenImage get statusMotobike =>
@@ -101,9 +108,11 @@ class $AssetsImagesGen {
         icSearchLocation,
         logoMb,
         logo,
+        markerIcon,
         milkTea,
         motobike,
         playstore,
+        point3,
         statusMotobike,
         statusShoppingCard,
         statusWallet,
@@ -189,6 +198,9 @@ class $AssetsSvgsGen {
   /// File path: assets/svgs/ic_camera.svg
   SvgGenImage get icCamera => const SvgGenImage('assets/svgs/ic_camera.svg');
 
+  /// File path: assets/svgs/ic_cicular.svg
+  SvgGenImage get icCicular => const SvgGenImage('assets/svgs/ic_cicular.svg');
+
   /// File path: assets/svgs/ic_filter.svg
   SvgGenImage get icFilter => const SvgGenImage('assets/svgs/ic_filter.svg');
 
@@ -198,6 +210,9 @@ class $AssetsSvgsGen {
 
   /// File path: assets/svgs/ic_ship_to.svg
   SvgGenImage get icShipTo => const SvgGenImage('assets/svgs/ic_ship_to.svg');
+
+  /// File path: assets/svgs/ic_success.svg
+  SvgGenImage get icSuccess => const SvgGenImage('assets/svgs/ic_success.svg');
 
   /// File path: assets/svgs/img_success.svg
   SvgGenImage get imgSuccess =>
@@ -217,6 +232,9 @@ class $AssetsSvgsGen {
 
   /// File path: assets/svgs/pana.svg
   SvgGenImage get pana => const SvgGenImage('assets/svgs/pana.svg');
+
+  /// File path: assets/svgs/phone.svg
+  SvgGenImage get phone => const SvgGenImage('assets/svgs/phone.svg');
 
   /// File path: assets/svgs/phone_green.svg
   SvgGenImage get phoneGreen =>
@@ -294,14 +312,17 @@ class $AssetsSvgsGen {
         giftOutline,
         hourglass,
         icCamera,
+        icCicular,
         icFilter,
         icShipFrom,
         icShipTo,
+        icSuccess,
         imgSuccess,
         kingSc,
         linkIos,
         multiCreditCard,
         pana,
+        phone,
         phoneGreen,
         powerIos,
         radiusCheck,

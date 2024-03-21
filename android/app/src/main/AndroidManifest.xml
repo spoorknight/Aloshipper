@@ -9,11 +9,21 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="com.google.android.gms.permission.AD_ID" tools:node="remove"/>
 
+    <queries>
+        <package android:name="com.twitter.android"/>
+        <package android:name="com.facebook.katana"/>
+        <package android:name="com.instagram.android"/>
+    </queries>
+
     <application
         android:label="AloShipper"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
         android:requestLegacyExternalStorage="true">
+
+        <meta-data
+            android:name="vn.map4d.map.ACCESS_KEY"
+            android:value="48f8019b006a6af92eb33e2b4b45556c"/>
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"

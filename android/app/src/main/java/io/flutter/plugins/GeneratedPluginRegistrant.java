@@ -96,6 +96,11 @@ public final class GeneratedPluginRegistrant {
       Log.e(TAG, "Error registering plugin image_picker_android, io.flutter.plugins.imagepicker.ImagePickerPlugin", e);
     }
     try {
+      flutterEngine.getPlugins().add(new vn.map4d.map.map4d_map.FMFMapViewPlugin());
+    } catch(Exception e) {
+      Log.e(TAG, "Error registering plugin map4d_map, vn.map4d.map.map4d_map.FMFMapViewPlugin", e);
+    }
+    try {
       flutterEngine.getPlugins().add(new io.flutter.plugins.packageinfo.PackageInfoPlugin());
     } catch(Exception e) {
       Log.e(TAG, "Error registering plugin package_info, io.flutter.plugins.packageinfo.PackageInfoPlugin", e);

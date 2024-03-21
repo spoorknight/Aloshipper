@@ -1,8 +1,9 @@
-import 'package:flutter/material.dart';
+import 'dart:async';
 
+import 'package:flutter/material.dart';
 import '../configs/config.dart';
 
-class MyScaffold extends StatelessWidget {
+class MyScaffold extends StatefulWidget {
   const MyScaffold({
     Key? key,
     required this.body,
@@ -26,25 +27,38 @@ class MyScaffold extends StatelessWidget {
   final bool safeAreaBottom;
   final Future<bool> Function()? onWillPop;
 
+  @override
+  State<MyScaffold> createState() => _MyScaffoldState();
+}
+
+class _MyScaffoldState extends State<MyScaffold> {
+
+
 
   @override
   Widget build(BuildContext context) {
     return Container(
       color: Palette.background,
       child: SafeArea(
-        bottom: safeAreaBottom,
+        bottom: widget.safeAreaBottom,
         child: Scaffold(
-          appBar: appBar,
-          backgroundColor: bgColor,
-          resizeToAvoidBottomInset: resizeToAvoidBottomInset,
-          body: Container(
-            width: double.infinity,
-            padding: padding,
-            child: body,
+          appBar: widget.appBar,
+          backgroundColor: widget.bgColor,
+          resizeToAvoidBottomInset: widget.resizeToAvoidBottomInset,
+          body: Stack(
+            children: [
+              Container(
+                width: double.infinity,
+                padding: widget.padding,
+                child: widget.body,
+              ),
+            ],
           ),
-          bottomNavigationBar: bottom,
+          bottomNavigationBar: widget.bottom,
         ),
       ),
     );
   }
+
+
 }

@@ -67,6 +67,9 @@ class ApiPath {
   static const String getOrders = 'getOrders';
   static const String cancelOrder = 'ShipperHuyDonHang';
   static const String ShipperHuyDonHangNew = 'ShipperHuyDonHangNew';
+  static const String getListShopGanBan = 'getListShopGanBan';
+  static const String getSupportSettings = 'getSupportSettings';
+
 
   //* Ẩn hiện thanh toán
   static const String checkCanPayment =

@@ -316,6 +316,103 @@ class _OrderApi implements OrderApi {
     return value;
   }
 
+  @override
+  Future<ListShopModel> getShopNearYou(
+    tokenlogin,
+    device_token,
+    page,
+    per_page,
+    my_latitude,
+    my_longtitude,
+    category_id,
+    main_job,
+  ) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
+    final _data = FormData();
+    _data.fields.add(MapEntry(
+      'tokenlogin',
+      tokenlogin,
+    ));
+    _data.fields.add(MapEntry(
+      'device_token',
+      device_token,
+    ));
+    _data.fields.add(MapEntry(
+      'page',
+      page.toString(),
+    ));
+    _data.fields.add(MapEntry(
+      'per_page',
+      per_page.toString(),
+    ));
+    if (my_latitude != null) {
+      _data.fields.add(MapEntry(
+        'my_latitude',
+        my_latitude.toString(),
+      ));
+    }
+    if (my_longtitude != null) {
+      _data.fields.add(MapEntry(
+        'my_longtitude',
+        my_longtitude.toString(),
+      ));
+    }
+    if (category_id != null) {
+      _data.fields.add(MapEntry(
+        'catagory_id',
+        category_id.toString(),
+      ));
+    }
+    if (main_job != null) {
+      _data.fields.add(MapEntry(
+        'main_job',
+        main_job.toString(),
+      ));
+    }
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ListShopModel>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+      contentType: 'multipart/form-data',
+    )
+            .compose(
+              _dio.options,
+              'getListShopGanBan',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = ListShopModel.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<SupportModel> getSupportSettings() async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<SupportModel>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'getSupportSettings',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = SupportModel.fromJson(_result.data!);
+    return value;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||

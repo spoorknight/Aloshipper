@@ -2,9 +2,11 @@ import 'package:app_shipper/src/models/cancel_order_model.dart';
 import 'package:app_shipper/src/models/list_order_model/list_order_model.dart';
 import 'package:app_shipper/src/models/list_order_model/list_order_statistic_model.dart';
 import 'package:app_shipper/src/models/shared_models/base_model.dart';
+import 'package:app_shipper/src/models/support_model.dart';
 
 import '../../../models/detail_order_model/detail_order_model.dart';
 
+import '../../../models/list_shop_model/list_shop_model.dart';
 import '../../../network/api_path.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/http.dart';
@@ -71,4 +73,20 @@ abstract class OrderApi {
     @Part(name: 'order_id') int order_id,
     @Part(name: 'lydohuy') String reason,
   );
+
+  @POST(ApiPath.getListShopGanBan)
+  @MultiPart()
+  Future<ListShopModel> getShopNearYou(
+      @Part(name: 'tokenlogin') String tokenlogin,
+      @Part(name: 'device_token') String device_token,
+      @Part(name: 'page') int page,
+      @Part(name: 'per_page') int per_page,
+      @Part(name: 'my_latitude') double? my_latitude,
+      @Part(name: 'my_longtitude') double? my_longtitude,
+      @Part(name: 'catagory_id') int? category_id,
+      @Part(name: 'main_job') int? main_job,
+      );
+
+  @GET(ApiPath.getSupportSettings)
+  Future<SupportModel> getSupportSettings();
 }

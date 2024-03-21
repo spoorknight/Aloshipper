@@ -62,8 +62,8 @@ class Shop {
         follow: json['follow'],
         rating: json['rating'] == null ? null : Rating.fromJson(json['rating']),
         createdAt: json['created_at'],
-        latitude: json['latitude'],
-        longitude: json['longitude'],
+        latitude: json['latitude'].toString(),
+        longitude: json['longitude'].toString(),
       );
 
   Map<String, Object?> toJson() => {

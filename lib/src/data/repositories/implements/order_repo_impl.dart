@@ -3,6 +3,8 @@ import 'package:app_shipper/src/models/list_order_model/list_order_model.dart';
 import 'package:app_shipper/src/models/list_order_model/list_order_statistic_model.dart';
 import 'package:app_shipper/src/models/shared_models/base_model.dart';
 
+import '../../../models/list_shop_model/list_shop_model.dart';
+import '../../../models/support_model.dart';
 import '../../data_sources/remote/order_api.dart';
 import '../order_repository.dart';
 import '../../../models/detail_order_model/detail_order_model.dart';
@@ -53,4 +55,26 @@ class OrderRepoImpl implements OrderRepository {
   Future<ResponseCancelOrderModel> getCancelReasons() {
     return orderApi.getCancelReasons();
   }
+
+  @override
+  Future<ListShopModel> getShopNearYou(String tokenlogin, String device_token,
+      int page, int per_page, double? my_latitude, double? my_longtitude,
+      [int? category_id, int? main_job]) {
+    return orderApi.getShopNearYou(
+      tokenlogin,
+      device_token,
+      page,
+      per_page,
+      my_latitude,
+      my_longtitude,
+      category_id,
+      main_job,
+    );
+  }
+
+  @override
+  Future<SupportModel> getSupportSettings() {
+    return orderApi.getSupportSettings();
+  }
+
 }

@@ -9,6 +9,7 @@ import '../../data/data_sources/local/data_manager.dart';
 import '../../features/cancel_order/cancel_order_view_model.dart';
 import '../../features/detail_order/detail_order_view_model.dart';
 import '../../features/event/event_view_model.dart';
+import '../../features/order/views/contact_view_model.dart';
 import '../../models/hive/shipper_call_customer_adapter.dart';
 import '../../shared/viewModels/banner_ads_view_model.dart';
 import '../../utils/helpers/device_infor.dart';
@@ -58,3 +59,5 @@ EventViewModel get eventViewModel => getIt<EventViewModel>();
 FBRemoteConfig get fbRemoteConfig => getIt<FBRemoteConfig>();
 
 Box<ShipperCallCustomerModel> get shipperCallCustomerAdapter => getIt<Box<ShipperCallCustomerModel>>();
+
+ContactViewModel get contactViewModel => getIt<ContactViewModel>();

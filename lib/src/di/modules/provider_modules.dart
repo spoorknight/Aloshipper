@@ -4,6 +4,7 @@ import 'package:app_shipper/src/data/repositories/implements/banner_repo_impl.da
 import 'package:app_shipper/src/data/repositories/order_repository.dart';
 import 'package:app_shipper/src/features/cancel_order/cancel_order_view_model.dart';
 import 'package:app_shipper/src/features/detail_order/detail_order_view_model.dart';
+import 'package:app_shipper/src/features/order/views/contact_view_model.dart';
 import 'package:app_shipper/src/features/price_setting_ride_hailing/price_setting_ride_hailing_view_model.dart';
 import 'package:app_shipper/src/features/statistic/statistic_view_model.dart';
 import 'package:app_shipper/src/features/verify_account/verify_account_view_model.dart';
@@ -126,6 +127,12 @@ class ProviderModule extends DIModule {
     getIt.registerFactory<StatisticViewModel>(
       () => StatisticViewModel(
         orderRepo: getIt<OrderRepository>(),
+      ),
+    );
+
+    getIt.registerLazySingleton<ContactViewModel>(
+          () => ContactViewModel(
+            orderRepo: getIt<OrderRepository>(),
       ),
     );
   }

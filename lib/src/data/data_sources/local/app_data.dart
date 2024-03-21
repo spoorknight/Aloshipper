@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:app_shipper/src/data/repositories/profile_repository.dart';
 import 'package:app_shipper/src/di/injection/injection.dart';
+import 'package:app_shipper/src/models/support_model.dart';
 import 'package:app_shipper/src/models/user_active_info_model.dart';
 import 'package:app_shipper/src/utils/app_enum.dart';
 import 'package:app_shipper/src/utils/extensions/extensions.dart';
@@ -27,6 +28,7 @@ class AppData {
   String userId = '';
   String firebaseToken = '';
   DeviceInfoModel? deviceInfo;
+  List<SupportDataModel>? lstSupportDataModel;
 
   // nếu expire là true > tk hết hạn
   bool isExpire = false;
@@ -180,5 +182,23 @@ class AppData {
         );
       },
     );
+  }
+
+  String? get messId {
+    return lstSupportDataModel
+        ?.firstWhere((element) => element.key == 'fb_id')
+        .value;
+  }
+
+  String? get zaloPhone {
+    return lstSupportDataModel
+        ?.firstWhere((element) => element.key == 'zalo')
+        .value;
+  }
+
+  String? get hotline {
+    return lstSupportDataModel
+        ?.firstWhere((element) => element.key == 'hotline')
+        .value;
   }
 }
