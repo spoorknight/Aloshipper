@@ -98,8 +98,9 @@ class _OrderShipperDetailState extends State<OrderShipperDetail> {
                         ItemDriver(
                           shipper: order!.shipper!,
                           distance: order.soKm,
-                          fee: order.phiship,
+                          fee: order.tongtien,
                           isCallDriver: true,
+                          detailOrder: viewModel.detailOrder,
                         ),
                       if (order?.orderNote?.isNotEmpty == true) ...[
                         Container(

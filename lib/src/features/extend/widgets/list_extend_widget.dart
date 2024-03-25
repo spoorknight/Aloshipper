@@ -13,7 +13,7 @@ class ListExtendWidget extends StatelessWidget {
         separatorBuilder: (context, index) => BoxConst.s12,
         padding: EdgeInsets.symmetric(horizontal: 16.sp),
         itemBuilder: (context, index) {
-          ServiceModel item = viewModel.listService[index];
+          Packages item = viewModel.listService[index];
           return ItemExpand(
             title: item.getTitle,
             description: item.getListPlan,

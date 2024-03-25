@@ -5,6 +5,7 @@ class InfoExtendWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final viewModelPro = context.watch<ProfileViewModel>();
     return Container(
       padding: EdgeInsets.symmetric(vertical: 10.sp, horizontal: 16.sp),
       decoration: AppTheme.boxDecoration.copyWith(
@@ -26,15 +27,22 @@ class InfoExtendWidget extends StatelessWidget {
                   color: Palette.nuatral20,
                   borderRadius: BorderRadius.circular(6.r),
                 ),
-                child: StreamBuilder<ProfileModel?>(
-                  stream: appData.profile,
-                  builder: (context, profile) {
-                    return Text(
-                      profile.data?.plan?.planTitle ?? '',
-                      style: AppFont.t.s(13).w500.black,
-                    );
-                  },
-                ),
+                child:
+                // StreamBuilder<ProfileModel?>(
+                //   stream: appData.profile,
+                //   builder: (context, profile) {
+                //     return Text(
+                //       // profile.data?.plan?.planTitle ?? '',
+                //       viewModelPro.listServiceModel?.currentPackageOfUser?.title ?? "",
+                //       style: AppFont.t.s(13).w500.black,
+                //     );
+                //   },
+                // ),
+                Text(
+                  // profile.data?.plan?.planTitle ?? '',
+                  viewModelPro.listServiceModel?.currentPackageOfUser?.title ?? "",
+                  style: AppFont.t.s(13).w500.black,
+                )
               ),
               BoxConst.s4,
               StreamBuilder<ProfileModel?>(

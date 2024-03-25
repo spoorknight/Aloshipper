@@ -1,4 +1,5 @@
-import '../../../models/list_service_model.dart';
+import 'package:app_shipper/src/models/list_service_new_model.dart';
+
 import '../../../utils/extensions/extensions.dart';
 import 'package:badges/badges.dart' as badge_lib;
 import 'package:flutter/material.dart';
@@ -7,7 +8,7 @@ import '../../../configs/config.dart';
 
 class ItemExtend extends StatelessWidget {
   final bool isSelected;
-  final ServiceModel service;
+  final Packages service;
   const ItemExtend({
     Key? key,
     this.isSelected = false,

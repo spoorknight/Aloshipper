@@ -1,3 +1,5 @@
+import 'package:app_shipper/src/features/detail_order/widgets/dialog_fee_service.dart';
+import 'package:app_shipper/src/models/detail_order_model/detail_order_model.dart';
 import 'package:app_shipper/src/utils/extensions/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -12,7 +14,9 @@ class RowContent extends StatelessWidget {
     this.content,
     this.styleContent,
     this.styleTitle,
+    this.order,
     this.showCopy = false,
+    this.isFeeService = false,
   }) : super(key: key);
 
   final String? title;
@@ -20,6 +24,8 @@ class RowContent extends StatelessWidget {
   final TextStyle? styleContent;
   final TextStyle? styleTitle;
   final bool showCopy;
+  final bool isFeeService;
+  final DetailOrderModel? order;
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +33,21 @@ class RowContent extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Expanded(
-          child: Text(
-            title ?? '',
-            style: styleTitle ?? AppFont.t,
+          child: Row(
+            children: [
+              Text(
+                title ?? '',
+                style: styleTitle ?? AppFont.t,
+              ),
+              isFeeService == false ? const SizedBox()
+                  : InkWell(
+                  onTap: () =>order == null ? null :
+                  showDialog(context: context, builder: (context)
+                  => Padding(
+                      padding: AppTheme.mainPadding,
+                      child: DialogServiceFee(order: order!)),),
+                  child: Assets.svgs.icInfo.svg())
+            ],
           ),
         ),
         Expanded(

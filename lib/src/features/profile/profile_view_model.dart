@@ -1,10 +1,8 @@
 import 'package:app_shipper/src/models/list_review_shipper_model/review_shippeer_model.dart';
-import 'package:app_shipper/src/models/list_service_model.dart';
 import 'package:app_shipper/src/navigator/app_navigator.dart';
 import 'package:app_shipper/src/utils/extensions/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:hive/hive.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../base/base_view_model.dart';
@@ -12,6 +10,7 @@ import '../../configs/app_constants.dart';
 import '../../data/repositories/profile_repository.dart';
 import '../../di/injection/injection.dart';
 import '../../models/hive/shipper_call_customer_adapter.dart';
+import '../../models/list_service_new_model.dart';
 import '../../navigator/routes.dart';
 import '../../shared/show_toast.dart';
 import '../../utils/helpers/logger.dart';
@@ -33,7 +32,7 @@ class ProfileViewModel extends BaseViewModel {
   final soTienCanThanhToanEC = TextEditingController();
 
   List<ReviewShipperModel> listReviewShipper = [];
-  List<ServiceModel> listService = [];
+  List<Packages> listService = [];
 
   RefreshController refreshCtl = RefreshController(initialRefresh: false);
   ScrollController scrollCrl = ScrollController();
@@ -42,7 +41,7 @@ class ProfileViewModel extends BaseViewModel {
     await Future.wait([
       getProfile(),
       getListReviewShipper(),
-      getListServiceModel(),
+      getListServiceNewModel(),
     ]);
     initGoiDichVu();
   }
@@ -112,16 +111,37 @@ class ProfileViewModel extends BaseViewModel {
     }
   }
 
-  Future<void> getListServiceModel() async {
+  // Future<void> getListServiceModel() async {
+  //   setLoading = true;
+  //   try {
+  //     final res = await profileRepo.getListServiceModel(
+  //       appData.tokenLogin,
+  //       appData.firebaseToken,
+  //     );
+  //     if (res.list != null) {
+  //       listService = (res.list ?? [])
+  //           .where((element) => (element.price ?? 0) > 0)
+  //           .toList();
+  //     }
+  //   } catch (e) {
+  //     Logger.d('GET LIST SERVICE MODEL >>>', e);
+  //   } finally {
+  //     setLoading = false;
+  //     notifyListeners();
+  //   }
+  // }
+
+  ListServiceNewModel? listServiceModel;
+  Future<void> getListServiceNewModel() async {
     setLoading = true;
     try {
-      final res = await profileRepo.getListServiceModel(
+      final res = await profileRepo.getListServiceNewModel(
         appData.tokenLogin,
-        appData.firebaseToken,
       );
-      if (res.list != null) {
-        listService = (res.list ?? [])
-            .where((element) => (element.price ?? 0) > 0)
+      if (res.packages != null) {
+        listServiceModel = res;
+        listService = (res.packages ?? [])
+            .where((element) => (double.parse(element.price?? '0')) > 0)
             .toList();
       }
     } catch (e) {
@@ -241,6 +261,15 @@ class ProfileViewModel extends BaseViewModel {
   }
 
   Future<void> autoGiaHan(bool active) async {
+    if(listServiceModel?.currentPackageOfUser?.isDeleted == '1'){
+      EasyLoading.showError(listServiceModel?.packageIsRemovedMess ?? "");
+      return;
+    }
+    if(listServiceModel?.currentPackageOfUser?.isDefault == '1'){
+      EasyLoading.showError(listServiceModel?.cannotAutoRenewPackageMess ?? "");
+      return;
+    }
+
     EasyLoading.show();
     try {
       final res = await profileRepo.autoGiaHan(
@@ -273,7 +302,7 @@ class ProfileViewModel extends BaseViewModel {
 
   String? selectedPlanId;
 
-  void onSelectPlan(ServiceModel ser) {
+  void onSelectPlan(Packages ser) {
     selectedPlanId = ser.id;
     soTienCanThanhToanEC.text = ser.price.toString().toVnd;
     notifyListeners();

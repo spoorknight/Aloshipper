@@ -1,5 +1,6 @@
 import 'package:app_shipper/src/features/price_setting_ride_hailing/price_setting_dto.dart';
 import 'package:app_shipper/src/models/list_review_shipper_model/list_review_shipper_model.dart';
+import 'package:app_shipper/src/models/list_service_new_model.dart';
 import 'package:app_shipper/src/models/price_setting_ride_hailing_model/ride_hailing_setting_model.dart';
 import 'package:app_shipper/src/models/user_active_info_model.dart';
 import 'package:app_shipper/src/models/user_info/user_info_res.dart';
@@ -109,6 +110,10 @@ abstract class ProfileRepository {
   Future<ListServiceModel> getListServiceModel(
     String tokenlogin,
     String device_token,
+  );
+
+  Future<ListServiceNewModel> getListServiceNewModel(
+    String tokenlogin,
   );
 
   Future<BaseModel> autoGiaHan(

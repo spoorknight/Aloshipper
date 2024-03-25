@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 
 import '../../../configs/config.dart';
 import '../../../models/profile_model.dart';
-import '../../../shared/button.dart';
 import '../../../shared/text_form_field.dart';
 import 'item_extend.dart';
 
@@ -38,29 +37,29 @@ class ModalExtend extends StatelessWidget {
                 readOnly: true,
               ),
               BoxConst.s16,
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('Chọn gói', style: AppFont.t),
-                  Column(
-                    children: [
-                      StreamBuilder<ProfileModel?>(
-                          stream: appData.profile,
-                          builder: (context, profile) {
-                            return CupertinoSwitch(
-                              value:
-                                  profile.data?.item?.user?.giaHanTuDong == '1',
-                              onChanged: viewModel.autoGiaHan,
-                            );
-                          }),
-                      Text(
-                        'Gia hạn tự động',
-                        style: AppFont.t.s(12),
-                      ),
-                    ],
-                  )
-                ],
-              ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: [
+              //     Text('Chọn gói', style: AppFont.t),
+              //     Column(
+              //       children: [
+              //         StreamBuilder<ProfileModel?>(
+              //             stream: appData.profile,
+              //             builder: (context, profile) {
+              //               return CupertinoSwitch(
+              //                 value:
+              //                     profile.data?.item?.user?.giaHanTuDong == '1',
+              //                 onChanged: viewModel.autoGiaHan,
+              //               );
+              //             }),
+              //         Text(
+              //           'Gia hạn tự động',
+              //           style: AppFont.t.s(12),
+              //         ),
+              //       ],
+              //     )
+              //   ],
+              // ),
               BoxConst.s12,
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,

@@ -32,6 +32,7 @@ class ApiPath {
   static const String updateFeeShipper = 'UpdateFeeShipper';
   static const String getListReviewShipper = 'getListReviewShipper';
   static const String getGoiDichVuShipper = 'getGoiDichVuShipper';
+  static const String getPackagesByToken = 'getPackagesByToken';
   static const String autoGiaHan = 'AutoGiaHan';
   static const String thanhToanGoiDichVu = 'ThanhToanGoiDichVu';
   static const String updateLatLng = 'updateLatLng';

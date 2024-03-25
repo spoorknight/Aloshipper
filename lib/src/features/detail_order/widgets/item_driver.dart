@@ -6,6 +6,7 @@ class ItemDriver extends StatelessWidget {
   final double? fee;
   final double? distance;
   final bool? isCallShipper;
+  final DetailOrderModel? detailOrder;
 
   const ItemDriver({
     Key? key,
@@ -13,6 +14,7 @@ class ItemDriver extends StatelessWidget {
     this.fee,
     this.distance,
     this.isCallShipper,
+    this.detailOrder,
     required this.shipper,
   }) : super(key: key);
 
@@ -60,6 +62,36 @@ class ItemDriver extends StatelessWidget {
                 Text(
                   shipper.biensoxe ?? '',
                   style: AppFont.t.s(13).w400.nuatral90,
+                ),
+                BoxConst.s4,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Row(
+                        children: [
+                          Text(
+                            'Phí áp dụng',
+                            style: AppFont.t.s(14).w400.black,
+                          ),
+                               InkWell(
+                              onTap: () =>detailOrder == null ? null :
+                              showDialog(context: context, builder: (context)
+                              => Padding(
+                                  padding: AppTheme.mainPadding,
+                                  child: DialogServiceFee(order: detailOrder!)),),
+                              child: Assets.svgs.icInfo.svg())
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      child: Text(
+                        '${detailOrder?.item?.phiship}'.toVnd,
+                        textAlign: TextAlign.right,
+                        style: AppFont.t.s(14).w400.black,
+                      ),
+                    ),
+                  ],
                 ),
                 BoxConst.s4,
                 Row(

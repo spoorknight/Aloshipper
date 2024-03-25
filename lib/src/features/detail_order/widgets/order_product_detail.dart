@@ -139,11 +139,19 @@ class _OrderProductDetailState extends State<OrderProductDetail> {
                                   Divider(color: Palette.nuatral50, height: 1),
                             ),
                             RowContent(
-                              title: 'Phí giao hàng',
-                              content: '${order?.phiship ?? 0}'.toVnd,
+                              title: 'Phí áp dụng',
+                              isFeeService: true,
+                              order: viewModel.detailOrder,
+                              content: '${order?.getTotalFee(phiShip: order.phiship?? 0)}'.toVnd,
                               styleContent: AppFont.t.s(14).w400.black,
                               styleTitle: AppFont.t.s(14).w400.black,
                             ),
+                            // RowContent(
+                            //   title: 'Phí giao hàng',
+                            //   content: '${order?.phiship ?? 0}'.toVnd,
+                            //   styleContent: AppFont.t.s(14).w400.black,
+                            //   styleTitle: AppFont.t.s(14).w400.black,
+                            // ),
                             if (order?.getVoucherType != null) ...[
                               const Padding(
                                 padding: EdgeInsets.symmetric(vertical: 10),

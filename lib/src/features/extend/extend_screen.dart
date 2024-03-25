@@ -1,3 +1,4 @@
+import 'package:app_shipper/src/models/list_service_new_model.dart';
 import 'package:app_shipper/src/shared/dialog.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';

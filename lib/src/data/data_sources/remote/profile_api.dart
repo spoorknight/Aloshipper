@@ -1,5 +1,6 @@
 import 'package:app_shipper/src/models/list_review_shipper_model/list_review_shipper_model.dart';
 import 'package:app_shipper/src/models/list_service_model.dart';
+import 'package:app_shipper/src/models/list_service_new_model.dart';
 import 'package:app_shipper/src/models/price_setting_ride_hailing_model/ride_hailing_setting_model.dart';
 import 'package:app_shipper/src/models/user_active_info_model.dart';
 import 'package:app_shipper/src/models/user_info/user_info_res.dart';
@@ -159,6 +160,14 @@ abstract class ProfileApi {
     @Part(name: 'tokenlogin') String tokenlogin,
     @Part(name: 'device_token') String device_token,
   );
+
+   @POST(ApiPath.getPackagesByToken)
+  @MultiPart()
+  Future<ListServiceNewModel> getListServiceNewModel(
+    @Part(name: 'tokenlogin') String tokenlogin,
+  );
+
+
 
   @POST(ApiPath.autoGiaHan)
   @MultiPart()

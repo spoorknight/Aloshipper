@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:app_shipper/src/features/detail_order/widgets/dialog_fee_service.dart';
+import 'package:app_shipper/src/models/detail_order_model/detail_order_model.dart';
 import 'package:app_shipper/src/models/detail_order_model/item.dart';
 import 'package:app_shipper/src/models/shared_models/shipper_model.dart';
 import 'package:app_shipper/src/navigator/app_navigator.dart';

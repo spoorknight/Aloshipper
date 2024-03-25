@@ -1,4 +1,5 @@
 import 'package:app_shipper/src/configs/config.dart';
+import 'package:app_shipper/src/models/detail_order_model/service_fee_info_model.dart';
 import 'package:app_shipper/src/utils/app_enum.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,7 @@ class Item extends Equatable {
   final Shop? shop;
   final Shipping? shipping;
   final List<Product>? products;
+  final List<ServiceFeeInfoModel>? shipServiceFeeInfo;
   final double? cod;
   final double? tienhang;
   final double? phiship;
@@ -43,6 +45,7 @@ class Item extends Equatable {
     this.products,
     this.cod,
     this.tienhang,
+    this.shipServiceFeeInfo,
     this.phiship,
     this.giamgia,
     this.tongtien,
@@ -73,6 +76,9 @@ class Item extends Equatable {
         products: (json['products'] as List<dynamic>?)
             ?.map((e) => Product.fromJson(e as Map<String, dynamic>))
             .toList(),
+    shipServiceFeeInfo: (json['shipper_service_fee_info'] as List<dynamic>?)
+        ?.map((e) => ServiceFeeInfoModel.fromJson(e as Map<String, dynamic>))
+        .toList(),
         cod: double.tryParse(json['cod'].toString()),
         tienhang: double.tryParse(json['tienhang'].toString()),
         phiship: double.tryParse(json['phiship'].toString()),
@@ -107,6 +113,7 @@ class Item extends Equatable {
         'shop': shop?.toJson(),
         'shipping': shipping?.toJson(),
         'products': products?.map((e) => e.toJson()).toList(),
+        'shipper_service_fee_info': shipServiceFeeInfo?.map((e) => e.toJson()).toList(),
         'cod': cod,
         'tienhang': tienhang,
         'phiship': phiship,
@@ -133,6 +140,7 @@ class Item extends Equatable {
     Shop? shop,
     Shipping? shipping,
     List<Product>? products,
+    List<ServiceFeeInfoModel>? userServiceFeeInfo,
     double? cod,
     double? tienhang,
     double? phiship,
@@ -158,6 +166,7 @@ class Item extends Equatable {
       shop: shop ?? this.shop,
       shipping: shipping ?? this.shipping,
       products: products ?? this.products,
+      shipServiceFeeInfo: userServiceFeeInfo ?? this.shipServiceFeeInfo,
       cod: cod ?? this.cod,
       tienhang: tienhang ?? this.tienhang,
       phiship: phiship ?? this.phiship,
@@ -190,6 +199,7 @@ class Item extends Equatable {
       shop,
       shipping,
       products,
+      shipServiceFeeInfo,
       cod,
       tienhang,
       phiship,
@@ -275,6 +285,14 @@ class Item extends Equatable {
       default:
         return '';
     }
+  }
+
+  double getTotalFee ({required double phiShip}){
+    double totalListFeeOfOrder= 0;
+    shipServiceFeeInfo?.forEach((element) {
+      totalListFeeOfOrder += double.parse(element.fee??'0');
+    });
+    return phiShip + totalListFeeOfOrder;
   }
 
   VoucherType? get getVoucherType {

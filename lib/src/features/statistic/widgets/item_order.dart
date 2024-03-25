@@ -129,7 +129,7 @@ class ItemOrder extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '${totalAmount}'.toVnd,
+                    '$totalAmount'.toVnd,
                     style: AppFont.t.s(16).w700.nuatral,
                   ),
                 ],
@@ -163,7 +163,7 @@ class ItemOrder extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(vertical: 4, horizontal: 21),
                   child: Text(
-                    '${status}',
+                    '$status',
                     style: AppFont.t
                         .s(10)
                         .w700

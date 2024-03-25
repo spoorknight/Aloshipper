@@ -204,6 +204,9 @@ class $AssetsSvgsGen {
   /// File path: assets/svgs/ic_filter.svg
   SvgGenImage get icFilter => const SvgGenImage('assets/svgs/ic_filter.svg');
 
+  /// File path: assets/svgs/ic_info.svg
+  SvgGenImage get icInfo => const SvgGenImage('assets/svgs/ic_info.svg');
+
   /// File path: assets/svgs/ic_ship_from.svg
   SvgGenImage get icShipFrom =>
       const SvgGenImage('assets/svgs/ic_ship_from.svg');
@@ -314,6 +317,7 @@ class $AssetsSvgsGen {
         icCamera,
         icCicular,
         icFilter,
+        icInfo,
         icShipFrom,
         icShipTo,
         icSuccess,

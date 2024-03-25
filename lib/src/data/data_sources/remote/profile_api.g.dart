@@ -715,6 +715,34 @@ class _ProfileApi implements ProfileApi {
   }
 
   @override
+  Future<ListServiceNewModel> getListServiceNewModel(tokenlogin) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = FormData();
+    _data.fields.add(MapEntry(
+      'tokenlogin',
+      tokenlogin,
+    ));
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ListServiceNewModel>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+      contentType: 'multipart/form-data',
+    )
+            .compose(
+              _dio.options,
+              'getPackagesByToken',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = ListServiceNewModel.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
   Future<BaseModel> autoGiaHan(
     tokenlogin,
     device_token,
